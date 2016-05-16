@@ -1,0 +1,84 @@
+#navbar {
+  background-color: #fc8608;
+  color: #000;
+  height: 0px;
+  border-bottom: 2px solid #e27603;
+}
+#logo {
+  width: 90px;
+  margin-left: 0%;
+}
+.class_logo {
+  margin-top: 3%;
+  display: inline-block;
+}
+.logueado {
+  margin-top: 3%;
+  float: right;
+  color: #fff;
+  text-shadow: 1px 1px 0px #727171;
+  font-size: 15px;
+}
+.admin {
+  width: 20px;
+}
+.logout {
+  width: 27px;
+  margin-left: 10px;
+}
+.logout:hover {
+  -webkit-filter: brightness(85%);
+}
+/* Dispositivos pequeños (tablets, anchura mayor o igual a 768px) */
+@media (min-width: 600px) {
+  #logo {
+    width: 110px;
+    margin-left: 0%;
+    margin-top: -6%;
+  }
+  .logueado {
+    margin-top: 1.7%;
+  }
+  .logout {
+    width: 30px;
+  }
+}
+@media (min-width: 768px) {
+  #logo {
+    width: 130px;
+    margin-left: -1%;
+    margin-top: -12%;
+  }
+  .logueado {
+    margin-top: 1.2%;
+    font-size: 16px;
+  }
+  .logout {
+    width: 32px;
+  }
+  .admin {
+    width: 22px;
+  }
+}
+@media (min-width: 992px) {
+  #logo {
+    width: 130px;
+    margin-left: -1%;
+    margin-top: -20%;
+  }
+  .logueado {
+    margin-top: 1%;
+    font-size: 16px;
+  }
+}
+@media (min-width: 1200px) {
+  #logo {
+    width: 130px;
+    margin-left: -1.5%;
+    margin-top: -30%;
+  }
+  .logueado {
+    margin-top: 0.7%;
+    font-size: 16px;
+  }
+}

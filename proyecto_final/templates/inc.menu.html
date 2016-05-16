@@ -1,0 +1,20 @@
+{% load staticfiles %}
+{% load i18n %}   <!--Esto es para la internacionalización-->
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-fixed-top" id="navbar">
+      <div class="container">
+        <div class="class_logo">
+          <a href="{% url "registro_perfil" %}"><img src="{% static "img/logo_4.png" %}" alt="..." id="logo"></a>
+        </div>
+        <div class="logueado">
+            {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                  <img src="{% static "img/admin.png" %}" alt="..." class="admin">
+                {% endif %} 
+                <label>{{ user.username }}</label>
+                <a href="{% url "account_logout" %}"><img src="{% static "img/logout.png" %}" alt="..." class="logout" id="logout"></a>
+            {% endif %}
+        </div>
+      </div>
+    </nav>

@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% load i18n %} 	#Esto es para la internacionalización
+{% load bootstrap3 %}
+
+{% block content %}
+
+	<h2 class="enhorabuena">¡Enhorabuena!, sólo falta rellenar el siguiente formulario</h2>
+
+<main class="container" id="login">
+  <div class="class_registro" id="div_registro">
+			<form action="." method="post" class="user_form" role="form">
+				{% csrf_token %}
+				{% comment %}
+				{{ user_form.as_p }}
+				{{ perfil_form.as_p }}
+				
+
+				{% bootstrap_form user_form %}
+				{% bootstrap_form perfil_form %}
+
+				<hr>
+				<hr>
+				{% endcomment %}
+
+				{% comment %}
+            	{{ perfil_form.deportes }}
+				{% endcomment %}
+				
+				<div class="div_deportes">
+					<label class="titulo">Selecciona tus deportes favoritos</label>
+					<hr class="hr_deportes">
+					<div data-toggle="buttons"> 
+					{% for checkbox in perfil_form.deportes %}
+	    				<label class="btn btn2-primary" style="position: relative;" title="asd">
+	    				{{ checkbox.tag }} {{ checkbox.choice_label }}
+	    			</label>
+					{% endfor %}
+					</div>
+				</div>
+				
+				<label class="titulo">Nombre</label>
+				<div id="div_id_name" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-user"></i>
+	                        </div>
+	       					{{ user_form.first_name }}
+	                    </div>
+	                </div>
+            	</div>
+				
+				<label class="titulo">Apellidos</label>
+            	<div id="div_id_lastname" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-user"></i>
+	                        </div>
+	                        {{ user_form.last_name }}
+	                    </div>
+	                </div>
+            	</div>
+
+				<label class="titulo">País</label>
+            	<div id="div_id_country" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-flag"></i>
+	                        </div>
+	                        {{ perfil_form.pais }}
+	                    </div>
+	                </div>
+            	</div>
+
+				<label class="titulo">Ciudad</label>
+            	<div id="div_id_city" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-flag"></i>
+	                        </div>
+	                        {{ perfil_form.ciudad }}
+	                    </div>
+	                </div>
+            	</div>
+
+				<label class="titulo">Fecha de nacimiento</label>
+            	{{ perfil_form.fecha_nac }}
+				
+				<br>
+				<label class="titulo">Descripción personal en el ámbito deportivo</label>
+            	{{ perfil_form.descripcion }}
+				
+				<br>
+				<label class="titulo">Si eres profesional del deporte indicanosló</label><br>
+            	{{ perfil_form.profesional }}<label class="titulo2">&nbsp;Profesional</label>
+				
+				{% buttons %}
+		        	<button class="btn" id="completar" type="submit">Finalizar Registro
+		        	</button>
+		    	{% endbuttons %}
+			</form>
+</div>
+</main>
+
+    <script>
+    	$("input[name='deportes']" ).on('change', function(){
+    		if($(this).is(':checked')){
+    			$(this).parent().append('<div class="opacidad" id="opacidad" alt="" ></div> ');
+    			$(this).parent().append('<img src="{% static "img/tick.png" %}" class="chekeo" id="checkeo" alt="" /> ');
+    		} else {
+    			$(this).parent().find('.chekeo').hide();
+    			$(this).parent().find('.opacidad').hide();
+    		}
+    	});
+    </script>
+{% endblock %}

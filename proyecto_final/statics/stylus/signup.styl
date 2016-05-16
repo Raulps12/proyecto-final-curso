@@ -1,0 +1,82 @@
+naranja = #FC8608
+gris = #898989
+celeste = #5fceca
+celes_osc = darken(celeste, 30%)
+
+body
+    background-image url(../img/fondo2.jpg)
+    background-position center center
+    background-repeat no-repeat
+    background-attachment fixed
+    background-size cover
+
+.container
+	font-family Arial, "Helvetica Neue", Helvetica, sans-serif
+	.class_signup
+		background-color white
+		border 10px solid naranja
+		border-radius 20px
+		padding 10px
+		margin-top 30px
+		margin-bottom 70px
+		margin-left 5%
+		width 90%
+		box-shadow 5px 5px 5px #AFAFAF, rgba(220,220,220,.65) 3px 3px 13px 2px inset
+			
+		h1	
+			text-align center	
+			font-size 25px
+			font-weight bold
+			color celeste
+			text-shadow 1px 1px 0px #C0C0C0
+			
+#registrate
+	width 100%
+	background-color celeste
+	border 1px solid darken(celeste, 22%)
+	font-size 17px
+	font-weight bold
+	color white
+	text-shadow 1px 1px 0px #727171
+	margin-top 10px
+	
+#registrate:hover 
+    -webkit-filter: brightness(85%)
+	
+#alert-error
+	color naranja
+	
+/* Dispositivos pequeños (tablets, anchura mayor o igual a 768px) */
+@media (min-width: 600px)
+	.container
+		.class_signup
+			margin-left 15%
+			width 70%
+			h1
+				font-size 30px
+				
+@media (min-width: 768px)
+	.container
+		.class_signup
+			margin-left 20%
+			width 60%
+			h1
+				font-size 30px
+ 
+/* Dispositivos medianos (ordenadores, anchura mayor o igual a 992px) */
+@media (min-width: 992px)
+	.container
+		.class_signup
+			margin-left 25%
+			width 50%
+			h1
+				font-size 30px
+ 
+/* Dispositivos grandes (ordenadores, anchura mayor o igual a 1200px) */
+@media (min-width: 1200px)
+	.container
+		.class_signup
+			margin-left 30%
+			width 40%
+			h1
+				font-size 30px		
