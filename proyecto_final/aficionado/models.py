@@ -9,17 +9,21 @@ from allauth.account.signals import user_signed_up
 from django.utils.translation import ugettext_lazy as _
 from django.utils.html import mark_safe
 
-from cities_light.abstract_models import (AbstractCity, AbstractRegion, AbstractCountry)
+from cities_light.abstract_models import (
+    AbstractCity, AbstractRegion, AbstractCountry)
 from cities_light.receivers import connect_default_signals
 # Create your models here.
+
 
 class Country(AbstractCountry):
     pass
 connect_default_signals(Country)
 
+
 class Region(AbstractRegion):
     pass
 connect_default_signals(Region)
+
 
 @python_2_unicode_compatible
 class City(AbstractCity):
@@ -27,6 +31,7 @@ class City(AbstractCity):
         return self.name
 
 connect_default_signals(City)
+
 
 @python_2_unicode_compatible
 class Deporte(models.Model):

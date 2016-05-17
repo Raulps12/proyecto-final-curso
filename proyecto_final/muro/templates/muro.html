@@ -1,11 +1,24 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load avatar_tags %}
 
 {% load i18n %} 	#Esto es para la internacionalización
 {% load bootstrap3 %}
+{% block head_added %}
+  <link href="{% static "css/modal_avatar.css" %}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
 
 	<h2>Este es el muro</h2>
+
+    <a href="{% url 'avatar_change' %}" data-toggle="modal" data-target="#theModal">{% avatar user %}</a>
+
+  <div id="theModal" class="modal fade text-center">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
 
 {% endblock %}
