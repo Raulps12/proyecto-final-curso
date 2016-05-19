@@ -9,4 +9,6 @@ urlpatterns = patterns('proyecto_final.muro.views',
                        url(r'^$', 'muro', name='muro'),
                        # Urls de Django-avatar
                        url(r'^muro/avatar/', include('avatar.urls')),
+                       # Resto de Urls
+                       url(r'^crear_publicacion/$', 'crear_publicacion', name='crear_publicacion'),
                        )

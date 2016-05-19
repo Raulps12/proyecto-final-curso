@@ -1,24 +1,56 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load avatar_tags %}
+{% load embed_video_tags %}
 
 {% load i18n %} 	#Esto es para la internacionalización
 {% load bootstrap3 %}
 {% block head_added %}
-  <link href="{% static "css/modal_avatar.css" %}" rel="stylesheet">
+<link href="{% static "css/modal_avatar.css" %}" rel="stylesheet">
+<link href="{% static "css/muro.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 
-	<h2>Este es el muro</h2>
+<a href="{% url 'avatar_change' %}" data-toggle="modal" data-target="#theModal">{% avatar user %}</a>
 
-    <a href="{% url 'avatar_change' %}" data-toggle="modal" data-target="#theModal">{% avatar user %}</a>
-
-  <div id="theModal" class="modal fade text-center">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      </div>
+<div id="theModal" class="modal fade text-center">
+  <div class="modal-dialog">
+    <div class="modal-content">
     </div>
   </div>
+</div>
+
+<a href="{% url "crear_publicacion" %}">Crear Publicación</a>
+
+<div class="row">
+  {% for publicacion in publicaciones %}
+  <div class="col-lg-6 col-lg-offset-3">
+    <h2>
+      {{ publicacion.titulo }}
+    </h2>
+    <p>
+      {{ publicacion.fecha_hora }}
+    </p>
+    <p>
+      {{ publicacion.video }}
+    </p>
+    
+    <div class="embed-responsive embed-responsive-16by9">
+      {% video publicacion.video as my_video %}
+        {% video my_video %}
+      {% endvideo %}
+    </div>
+
+    <p>
+      {{ publicacion.imagen }}
+    </p>
+    <img src="{{ publicacion.imagen.url }}" alt="..." class="img-thumbnail center-block">
+    <p>
+      {{ publicacion.texto }}
+    </p>
+  </div>
+  {% endfor %}
+</div>
 
 {% endblock %}

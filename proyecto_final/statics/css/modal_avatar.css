@@ -69,11 +69,6 @@
   text-shadow: 1px 1px 0px #727171;
   margin-top: 20px;
 }
-
-label{
-  display: none;
-}
-
 /* Dispositivos pequeños (tablets, anchura mayor o igual a 768px) */
 @media (min-width: 600px) {
 	.modal-header h1 {

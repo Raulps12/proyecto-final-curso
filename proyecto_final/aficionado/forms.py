@@ -24,10 +24,6 @@ class UserForm(forms.ModelForm):
 
 class PerfilForm(forms.ModelForm):
 
-    # start_date = forms.DateTimeField(
-    #    required=False,
-    #    widget=DateTimePicker(options={"format": "DD-MM-YYYY"}))
-
     class Meta:
         dateTimeOptions = {
             'format': 'dd/mm/yyyy',

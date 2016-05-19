@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     'dal_select2',
     # Apps para Django-avatar
     'avatar',
+    # Apps para Django-embed-video
+    'embed_video',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -138,7 +140,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-ES'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Madrid'
 
 USE_I18N = True
 
