@@ -12,75 +12,71 @@
 
 {% block content %}
 
-<a href="{% url 'avatar_change' %}" data-toggle="modal" data-target="#theModal">{% avatar user %}</a>
+<div class="muro">
 
-<div id="theModal" class="modal fade text-center">
-  <div class="modal-dialog">
-    <div class="modal-content">
+  <a href="{% url 'avatar_change' %}" data-toggle="modal" data-target="#theModal">{% avatar user %}</a>
+
+  <div id="theModal" class="modal fade text-center">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      </div>
     </div>
   </div>
-</div>
+  <a href="{% url "crear_publicacion" %}"><button class="btn" id="completar" type="submit">Crear Publicación</button></a>
 
-<a href="{% url "crear_publicacion" %}">Crear Publicación</a>
-
-<div class="row">
-  {% for publicacion in publicaciones %}
-  <div class="col-lg-6 col-lg-offset-3">
-    <h2>
-      {{ publicacion.titulo }}
-    </h2>
-    <p>
-      {{ publicacion.fecha_hora }}
-    </p>
-    <p>
-      {{ publicacion.video }}
-    </p>
-    
-    <div class="embed-responsive embed-responsive-16by9">
-      {% video publicacion.video as my_video %}
+  
+    {% for publicacion in publicaciones %}
+    <div class="row publicacion">
+      <p class="fecha_hora">
+        {{ publicacion.fecha_hora }}
+      </p>
+      <h2 class="titulo_publicacion">
+        {{ publicacion.titulo }}
+      </h2>
+      <hr>
+      <div class="embed-responsive embed-responsive-16by9 video_publicacion">
+        {% video publicacion.video as my_video %}
         {% video my_video %}
-      {% endvideo %}
-    </div>
+        {% endvideo %}
+      </div>
 
-    <p>
-      {{ publicacion.imagen }}
-    </p>
-    <img src="{{ publicacion.imagen.url }}" alt="..." class="img-thumbnail center-block">
-    <p>
-      {{ publicacion.texto }}
-    </p>
-  </div>
-  {% endfor %}
+      <img src="{{ publicacion.imagen.url }}" alt="..." class="img-thumbnail center-block imagen_publicacion">
+      <hr>
+      <p class="texto_publicacion">
+        {{ publicacion.texto }}
+      </p>
+      <hr>
+        </div>
+    {% endfor %}
+
+
+  <div class="row paginacion">
+     <ul class="pagination pagination-sm">
+
+       {% if publicaciones.has_previous %}   
+       <li><a href="?page={{ publicaciones.previous_page_number }}">&laquo;</a></li>  
+       {% else %}
+       <li class="disabled">
+        <span>&laquo;</span>
+      </li>  
+      {% endif %}       
+
+      {% for i in publicaciones.paginator.page_range  %}
+
+      <li><a href="?page={{ i }}">{{ i }}</a></li>
+
+      {% endfor %}
+
+      {% if publicaciones.has_next %}   
+      <li><a href="?page={{ publicaciones.next_page_number }}">&raquo;</a></li>
+      {% else %}   
+      <li class="disabled">
+        <span>&raquo;</span>
+      </li>
+      {% endif %}
+
+    </ul>
 </div>
 
-<div class="row">
-    <div class="col-lg-12">
-       <ul class="pagination pagination-sm">
-          
-       {% if publicaciones.has_previous %}   
-         <li><a href="?page={{ publicaciones.previous_page_number }}">&laquo;</a></li>  
-       {% else %}
-            <li class="disabled">
-                <span>&laquo;</span>
-            </li>  
-       {% endif %}       
-   
-       {% for i in publicaciones.paginator.page_range  %}
-   
-           <li><a href="?page={{ i }}">{{ i }}</a></li>
-             
-       {% endfor %}
-
-       {% if publicaciones.has_next %}   
-         <li><a href="?page={{ publicaciones.next_page_number }}">&raquo;</a></li>
-       {% else %}   
-            <li class="disabled">
-                <span>&raquo;</span>
-            </li>
-       {% endif %}
-   
-       </ul>
-    </div>
- </div>
-
+</div>
 {% endblock %}
