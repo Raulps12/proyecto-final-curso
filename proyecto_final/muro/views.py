@@ -1,7 +1,10 @@
 # -*- encoding: utf-8 -*-
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 from proyecto_final.aficionado.models import Perfil
 from proyecto_final.aficionado.forms import UserForm, PerfilForm
@@ -14,8 +17,11 @@ from .forms import PublicacionForm
 @login_required
 def muro(request):
 
-    publicaciones = Publicacion.objects.filter(
+    publicaciones_filtro = Publicacion.objects.filter(
         autor=request.user).order_by('-fecha_hora')
+
+    paginator = Paginator(publicaciones_filtro, settings.PAGINATION_PAGES)
+    page_default = 1
 
     # Aquí comprobamos si el usuario ya ha completado el formulario de registro
     user_form = UserForm(instance=request.user)
@@ -34,6 +40,13 @@ def muro(request):
     # Final de comprobación
 
     else:
+        page = request.GET.get('page', page_default)
+        try:
+            publicaciones = paginator.page(page)
+        except PageNotAnInteger:
+            publicaciones = paginator.page(page_default)
+        except EmptyPage:
+            publicaciones = paginator.page(paginator.num_pages)
         context2 = {'publicaciones': publicaciones}
         return render(request, 'muro.html', context2)
 

@@ -53,4 +53,34 @@
   {% endfor %}
 </div>
 
+<div class="row">
+    <div class="col-lg-12">
+       <ul class="pagination pagination-sm">
+          
+       {% if publicaciones.has_previous %}   
+         <li><a href="?page={{ publicaciones.previous_page_number }}">&laquo;</a></li>  
+       {% else %}
+            <li class="disabled">
+                <span>&laquo;</span>
+            </li>  
+       {% endif %}       
+   
+       {% for i in publicaciones.paginator.page_range  %}
+   
+           <li><a href="?page={{ i }}">{{ i }}</a></li>
+             
+       {% endfor %}
+
+       {% if publicaciones.has_next %}   
+         <li><a href="?page={{ publicaciones.next_page_number }}">&raquo;</a></li>
+       {% else %}   
+            <li class="disabled">
+                <span>&raquo;</span>
+            </li>
+       {% endif %}
+   
+       </ul>
+    </div>
+ </div>
+
 {% endblock %}
