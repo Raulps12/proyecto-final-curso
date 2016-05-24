@@ -10,6 +10,8 @@
 <link href="{% static "css/muro.css" %}" rel="stylesheet">
 {% endblock %}
 
+{% url 'muro' argument %}
+
 {% block content %}
 
 <div class="muro">
@@ -22,6 +24,12 @@
       </div>
     </div>
   </div>
+
+  {{ user.username }}
+  {{ user.first_name }}
+  {{ user.last_name }}
+  {{ perfil.descripcion }}
+
   <a href="{% url "crear_publicacion" %}"><button class="btn" id="completar" type="submit">Crear Publicación</button></a>
 
   

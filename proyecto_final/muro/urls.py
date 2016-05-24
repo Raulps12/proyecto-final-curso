@@ -7,6 +7,7 @@ urlpatterns = patterns('proyecto_final.muro.views',
                        # expresión regular
                        # Esta será la página de inicio
                        url(r'^$', 'muro', name='muro'),
+                       # url(r'^muro/(?P<perfil_pk>\d+)/$', 'muro', name='muro'),
                        # Urls de Django-avatar
                        url(r'^muro/avatar/', include('avatar.urls')),
                        # Resto de Urls

@@ -1,4 +1,5 @@
 {% extends "account/base.html" %}
+{% load staticfiles %}
 
 {% load i18n %}
 {% load account socialaccount %}
@@ -6,6 +7,15 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
+
+<div class="row div_portada">
+  <h1>Bienvenido a Sport<span class="span_gris">fil</span></h1>
+  <h2>Tu nueva red social deportiva</h2>
+  <img src="{% static "img/mundo.png" %}" alt="..." class="mundo">
+  <h5>Conoce a personas con tus mismos gustos e intereses deportivos &bull; Comparte tus imágenes y videos
+   &bull; Crea tus eventos deportivos &bull; Apúntate a eventos creados por otros</h5>
+</div>
+
 <main class="container" id="login">
   <div class="class_login" id="div_login">
 
@@ -74,7 +84,7 @@
         <div class="input-group">
           <div class="input-group-addon"> <i class="glyphicon glyphicon-user"></i>
           </div>
-          <input autofocus="autofocus" class="textinput textInput form-control input-lg" id="id_login" name="login" placeholder="Usuario" type="text" autocomplete="off" ></div>
+          <input class="textinput textInput form-control input-lg" id="id_login" name="login" placeholder="Usuario" type="text" autocomplete="off" ></div>
       </div>
     </div>
     {% for error in form.password.errors %}
@@ -104,8 +114,8 @@
   </form>
 
   <hr>
-
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+  <!--
+  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a> -->
 
   <p>
     ¿No tienes una cuenta?

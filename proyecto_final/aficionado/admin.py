@@ -11,7 +11,7 @@ class PerfilAdmin(admin.ModelAdmin):
 
     # Añadimos los campos que queremos que aparezcan en la zona /admin
     list_display = (
-        'owner', 'pais', 'ciudad', 'descripcion', 'fecha_nac', 'profesional')
+        'id', 'owner', 'pais', 'ciudad', 'descripcion', 'fecha_nac', 'profesional')
     # Añadimos un filtrado (en este caso por pais)
     list_filter = ('pais',)		# Hay que poner la coma para que funcione
     # Añadimos un buscador # Hay que poner la coma para que funcione

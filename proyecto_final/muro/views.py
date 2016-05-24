@@ -3,6 +3,7 @@ from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
@@ -15,6 +16,7 @@ from .forms import PublicacionForm
 
 
 @login_required
+# def muro(request, perfil_pk):
 def muro(request):
 
     publicaciones_filtro = Publicacion.objects.filter(
@@ -22,6 +24,8 @@ def muro(request):
 
     paginator = Paginator(publicaciones_filtro, settings.PAGINATION_PAGES)
     page_default = 1
+
+    # perfil = get_object_or_404(Perfil, pk=perfil_pk)
 
     # Aquí comprobamos si el usuario ya ha completado el formulario de registro
     user_form = UserForm(instance=request.user)
@@ -40,6 +44,7 @@ def muro(request):
     # Final de comprobación
 
     else:
+
         page = request.GET.get('page', page_default)
         try:
             publicaciones = paginator.page(page)
@@ -47,7 +52,8 @@ def muro(request):
             publicaciones = paginator.page(page_default)
         except EmptyPage:
             publicaciones = paginator.page(paginator.num_pages)
-        context2 = {'publicaciones': publicaciones}
+        # context2 = {'publicaciones': publicaciones, 'perfil': perfil}
+        context2 = {'publicaciones': publicaciones, }
         return render(request, 'muro.html', context2)
 
 
