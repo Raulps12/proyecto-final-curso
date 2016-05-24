@@ -13,6 +13,7 @@
                 {% if user.is_superuser %}
                   <img src="{% static "img/admin.png" %}" alt="..." class="admin">
                 {% endif %} 
+                <img src="{% avatar_url user %}" class="img-circle miniatura_usuario">
                 <label>{{ user.username }}</label>
                 <a href="{% url "account_logout" %}"><img src="{% static "img/logout.png" %}" alt="..." class="logout" id="logout"></a>
             {% endif %}

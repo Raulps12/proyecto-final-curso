@@ -1,9 +1,10 @@
 .muro{
 	width: 100%;
 	margin-left: 0%;
-	margin-top: -20px;
+	margin-top: -50px;
 	margin-bottom: -10px;
 	color: #B0B0B0;
+	padding-top: 60px;
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+50,ffffff+50&0+0,1+10,1+90,0+100 */
 background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 10%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 90%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 10%,rgba(255,255,255,1) 50%,rgba(255,255,255,1) 90%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -11,16 +12,69 @@ background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,1
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
 }
 
-#completar {
+.cabecera_usuario{
+	/*border: 1px solid #37b4af;*/
+	text-align: center;
+	width: 85%;
+	margin-left: 7.5%;
+	margin-bottom: 90px;
+}
+
+.cabecera_interior{
+	width: 100%;
+	height: 130px;
+	background-color: #5fceca;
+	border-radius: 20px 20px 0 0;
+	padding-top: 15px;
+}
+
+.img_usuario{
+	border: 4px solid white;
+	position: relative;
+	margin-top: -60px;
+	width: 120px;
+	box-shadow: 0 4px 2px rgba(0, 0, 0, 0.3);
+}
+
+.cabecera_usuario h2{
+	font-size: 15px;
+	color: white;
+	font-weight: bold;
+	margin-top: 0;
+	text-shadow: 1px 1px 0px #727171;
+}
+
+.cabecera_usuario h2 span{
+	font-size: 17px;
+}
+
+.cabecera_usuario h3{
+	font-size: 12px;
+}
+
+.cabecera_usuario .hr_1{
+	background-color: #fc8608;
+	height: 10px;
+	border-radius: 10px;
+}
+
+.cabecera_usuario .hr_2{
+	width: 100%;
+	background-color: #5fceca;
+	height: 3px;
+	border-radius: 10px;
+}
+
+#crear_publi {
   width: 37%;
   height: 30px;
-  background-color: #5fceca;
-  border: 1px solid #37b4af;
+  background-color: #fc8608;
+  border: 1px solid #e27603;
   font-size: 15px;
   font-weight: bold;
   color: #fff;
   text-shadow: 1px 1px 0px #727171;
-  margin-top: 40px;
+  margin-top: -40px;
   margin-right: 8%;
   margin-bottom: 0px;
   float: right;
@@ -28,7 +82,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
   padding: 0px;
 }
 
-#completar:hover {
+#crear_publi:hover {
     -webkit-filter: brightness(85%);
 }
 
@@ -36,10 +90,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 	width: 85%;
 	margin-left: 7.5%;
 	margin-bottom: 20px;
-	border: 2px solid #5fceca;
+	border: 4px solid #5fceca;
 	border-radius: 20px;
 	padding: 15px;
 	box-shadow: rgba(220,220,220,0.65) 3px 3px 13px 2px inset;
+}
+
+.interior_publicacion{
+	width: 90%;
+	margin-left: 5%;
 }
 
 .fecha_hora{
@@ -79,13 +138,19 @@ hr{
 }
 
 /* Dispositivos pequeños (tablets, anchura mayor o igual a 768px) */
-@media (min-width: 320px) {
-	#completar {
+@media (max-width: 380px) {
+	#crear_publi {
 	  width: 39%;
 	  height: 25px;
 	  font-size: 12px;
 	  margin-right: 8%;
 	  margin-bottom: 0px;
+	}
+	.cabecera_usuario h2{
+		font-size: 12px;
+	}
+	.cabecera_usuario h2 span{
+		font-size: 15px;
 	}
 }
 @media (min-width: 600px) {
@@ -93,8 +158,12 @@ hr{
 		width: 90%;
 		margin-left: 5%;
 	}
-	#completar {
-	  width: 25%;
+	#crear_publi {
+	  width: 30%;
+	}
+	.cabecera_usuario{
+		width: 75%;
+		margin-left: 12.5%;
 	}
 }
 @media (min-width: 768px) {
@@ -102,7 +171,7 @@ hr{
 		width: 90%;
 		margin-left: 5%;
 	}
-	#completar {
+	#crear_publi {
 	  width: 25%;
 	  margin-right: 12.5%;
 	}
@@ -113,15 +182,20 @@ hr{
 	.paginacion{
 		margin-left: 12.5%;
 	}
+	.cabecera_usuario{
+		width: 65%;
+		margin-left: 17.5%;
+	}
 }
 /* Dispositivos medianos (ordenadores, anchura mayor o igual a 992px) */
 @media (min-width: 992px) {
 	.muro{
 		width: 90%;
 		margin-left: 5%;
+		padding-top: 70px;
 	}
-	#completar {
-	  width: 15%;
+	#crear_publi {
+	  width: 17%;
 	  height: 25px;
 	  margin-right: 22.5%;
 	}
@@ -132,6 +206,14 @@ hr{
 	.paginacion{
 		margin-left: 22.5%;
 	}
+	.cabecera_usuario{
+		width: 45%;
+		margin-left: 27.5%;
+	}
+	.interior_publicacion{
+		width: 80%;
+		margin-left: 10%;
+	}
 }
 /* Dispositivos grandes (ordenadores, anchura mayor o igual a 1200px) */
 @media (min-width: 1200px) {
@@ -139,7 +221,7 @@ hr{
 		width: 90%;
 		margin-left: 5%;
 	}
-	#completar {
+	#crear_publi {
 	  width: 15%;
 	  height: 25px;
 	  margin-right: 22.5%;
@@ -153,5 +235,13 @@ hr{
 	}
 	.titulo_publicacion{
 		font-size: 22px;
+	}
+	.cabecera_usuario{
+		width: 45%;
+		margin-left: 27.5%;
+	}
+	.interior_publicacion{
+		width: 80%;
+		margin-left: 10%;
 	}
 }

@@ -39,7 +39,7 @@ class Deporte(models.Model):
     icono = models.ImageField(upload_to='icono_deportes')
 
     def __str__(self):
-        return mark_safe('<img src ="' + self.icono.url + '" />')
+        return mark_safe('<img src ="' + self.icono.url + '" title ="' + self.nombre + '" />')
         # return self.nombre
 
 

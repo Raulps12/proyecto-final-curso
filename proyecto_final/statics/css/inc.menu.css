@@ -13,7 +13,7 @@
   display: inline-block;
 }
 .logueado {
-  margin-top: 3%;
+  margin-top: 2%;
   float: right;
   color: #fff;
   text-shadow: 1px 1px 0px #727171;
@@ -29,7 +29,12 @@
 .logout:hover {
   -webkit-filter: brightness(85%);
 }
-/* Dispositivos pequeños (tablets, anchura mayor o igual a 768px) */
+
+@media (max-width: 350px) {
+  .miniatura_usuario{
+    visibility: hidden;
+  }
+}
 @media (min-width: 600px) {
   #logo {
     width: 110px;
@@ -37,7 +42,7 @@
     margin-top: -6%;
   }
   .logueado {
-    margin-top: 1.7%;
+    margin-top: 1.5%;
   }
   .logout {
     width: 30px;
@@ -50,7 +55,7 @@
     margin-top: -12%;
   }
   .logueado {
-    margin-top: 1.2%;
+    margin-top: 1%;
     font-size: 16px;
   }
   .logout {
@@ -67,7 +72,7 @@
     margin-top: -20%;
   }
   .logueado {
-    margin-top: 1%;
+    margin-top: 0.8%;
     font-size: 16px;
   }
 }

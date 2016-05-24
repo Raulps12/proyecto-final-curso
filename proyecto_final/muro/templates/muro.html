@@ -16,32 +16,53 @@
 
 <div class="muro">
 
-  <a href="{% url 'avatar_change' %}" data-toggle="modal" data-target="#theModal">{% avatar user %}</a>
+  <!--<a href="{% url 'avatar_change' %}" data-toggle="modal" data-target="#theModal">{% avatar user %}</a>-->
 
-  <div id="theModal" class="modal fade text-center">
-    <div class="modal-dialog">
-      <div class="modal-content">
+  <div class="cabecera_usuario">
+
+    <div class="cabecera_interior">
+
+      <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+      <h2><span> {{ user.username }}</span></h2>
+
+    </div>
+
+    <a href="{% url 'avatar_change' %}" data-toggle="modal" data-target="#theModal"><img src="{% avatar_url user %}" class="img-circle img_usuario"></a>
+
+    <div id="theModal" class="modal fade text-center">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
       </div>
     </div>
+
+    <!--<hr class="hr_1">-->
+
+    <h3>{{ user.profile.descripcion }}</h3>
+
+    <hr class="hr_2">
+
+    {% for deporte in user.profile.deportes.all %}
+
+    {{ deporte }}
+
+    {% endfor %}
+
   </div>
 
-  {{ user.username }}
-  {{ user.first_name }}
-  {{ user.last_name }}
-  {{ perfil.descripcion }}
-
-  <a href="{% url "crear_publicacion" %}"><button class="btn" id="completar" type="submit">Crear Publicación</button></a>
+  <a href="{% url "crear_publicacion" %}"><button class="btn" id="crear_publi" type="submit">Crear Publicación</button></a>
 
   
-    {% for publicacion in publicaciones %}
-    <div class="row publicacion">
-      <p class="fecha_hora">
-        {{ publicacion.fecha_hora }}
-      </p>
-      <h2 class="titulo_publicacion">
-        {{ publicacion.titulo }}
-      </h2>
-      <hr>
+  {% for publicacion in publicaciones %}
+  <div class="row publicacion">
+    <p class="fecha_hora">
+      {{ publicacion.fecha_hora }}
+    </p>
+    <h2 class="titulo_publicacion">
+      {{ publicacion.titulo }}
+    </h2>
+    <hr>
+    <div class="interior_publicacion">
       <div class="embed-responsive embed-responsive-16by9 video_publicacion">
         {% video publicacion.video as my_video %}
         {% video my_video %}
@@ -49,41 +70,42 @@
       </div>
 
       <img src="{{ publicacion.imagen.url }}" alt="..." class="img-thumbnail center-block imagen_publicacion">
-      <hr>
-      <p class="texto_publicacion">
-        {{ publicacion.texto }}
-      </p>
-      <hr>
-        </div>
-    {% endfor %}
+    </div>
+    <hr>
+    <p class="texto_publicacion">
+      {{ publicacion.texto }}
+    </p>
+    <hr>
+  </div>
+  {% endfor %}
 
 
   <div class="row paginacion">
-     <ul class="pagination pagination-sm">
+   <ul class="pagination pagination-sm">
 
-       {% if publicaciones.has_previous %}   
-       <li><a href="?page={{ publicaciones.previous_page_number }}">&laquo;</a></li>  
-       {% else %}
-       <li class="disabled">
-        <span>&laquo;</span>
-      </li>  
-      {% endif %}       
+     {% if publicaciones.has_previous %}   
+     <li><a href="?page={{ publicaciones.previous_page_number }}">&laquo;</a></li>  
+     {% else %}
+     <li class="disabled">
+      <span>&laquo;</span>
+    </li>  
+    {% endif %}       
 
-      {% for i in publicaciones.paginator.page_range  %}
+    {% for i in publicaciones.paginator.page_range  %}
 
-      <li><a href="?page={{ i }}">{{ i }}</a></li>
+    <li><a href="?page={{ i }}">{{ i }}</a></li>
 
-      {% endfor %}
+    {% endfor %}
 
-      {% if publicaciones.has_next %}   
-      <li><a href="?page={{ publicaciones.next_page_number }}">&raquo;</a></li>
-      {% else %}   
-      <li class="disabled">
-        <span>&raquo;</span>
-      </li>
-      {% endif %}
+    {% if publicaciones.has_next %}   
+    <li><a href="?page={{ publicaciones.next_page_number }}">&raquo;</a></li>
+    {% else %}   
+    <li class="disabled">
+      <span>&raquo;</span>
+    </li>
+    {% endif %}
 
-    </ul>
+  </ul>
 </div>
 
 </div>
