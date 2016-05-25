@@ -24,9 +24,6 @@
 .center {
   text-align: center;
 }
-.miniatura_usuario{
-  width: 35px;
-}
 /* Dispositivos pequeños (tablets, anchura mayor o igual a 768px) */
 @media (min-width: 600px) {
   #icono_3 {

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+	<ul>
+	{% for usuario in usuarios %}
+	<a href="{% url 'visita_muro' usuario.pk %}"<li>{{ usuario.username }}</li></a>
+	{% empty %}
+		<li>No hay usuarios relacionados con su búsqueda</li>
+	</ul>
+	{% endfor %}
+	
+{% endblock %}

@@ -4,6 +4,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
+from .decorators import muro_decorator
+from django.template.response import TemplateResponse
 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
@@ -11,6 +14,7 @@ from proyecto_final.aficionado.models import Perfil
 from proyecto_final.aficionado.forms import UserForm, PerfilForm
 from .models import Publicacion
 from .forms import PublicacionForm
+from django.db.models import Q
 
 # Create your views here.
 
@@ -70,3 +74,31 @@ def crear_publicacion(request):
 
     context = {'publicacion_form': publicacion_form, }
     return render(request, 'crear_publicacion.html', context)
+
+"""
+@login_required
+def visita_muro(request, user_pk):
+
+    usuario = User.objects.get(pk=user_pk)
+
+    context = {'usuario': usuario, }
+    return render(request, 'visita_muro.html', context)
+"""
+
+
+@login_required
+@muro_decorator
+def visita_muro(request, usuario_pk):
+
+    context = {}
+    return TemplateResponse(request, 'visita_muro.html', context)
+
+
+@login_required
+def busqueda(request):
+
+    usuarios = User.objects.filter(Q(username__icontains=request.GET['s']) | Q(
+        first_name__icontains=request.GET['s']) | Q(last_name__icontains=request.GET['s']))
+
+    context = {'usuarios': usuarios}
+    return render(request, 'busqueda.html', context)
