@@ -75,11 +75,22 @@ def crear_publicacion(request):
     context = {'publicacion_form': publicacion_form, }
     return render(request, 'crear_publicacion.html', context)
 
+
+@login_required
+def eliminar_publicacion(request, publicacion_pk):
+
+    publicacion = get_object_or_404(Publicacion, pk=publicacion_pk)
+
+    publicacion.delete()
+
+    return redirect(muro)
+
+
 """
 @login_required
-def visita_muro(request, user_pk):
+def visita_muro(request, usuario_pk):
 
-    usuario = User.objects.get(pk=user_pk)
+    usuario = User.objects.get(pk=usuario_pk)
 
     context = {'usuario': usuario, }
     return render(request, 'visita_muro.html', context)

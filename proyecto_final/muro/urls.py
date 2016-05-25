@@ -9,10 +9,11 @@ urlpatterns = patterns('proyecto_final.muro.views',
                        # expresión regular
                        # Esta será la página de inicio
                        url(r'^$', 'muro', name='muro'),
-                       url(r'^muro/:usuario_pk/$', view=visita_muro, name='visita_muro'),
-                       url(r'^buscar/$', view=busqueda, name='busqueda'),
                        # Urls de Django-avatar
                        url(r'^muro/avatar/', include('avatar.urls')),
                        # Resto de Urls
+                       url(r'^muro/:usuario_pk/$', view=visita_muro, name='visita_muro'),
+                       url(r'^buscar/$', view=busqueda, name='busqueda'),
                        url(r'^crear_publicacion/$', 'crear_publicacion', name='crear_publicacion'),
+                       url(r'^eliminar_publicacion/:publicacion_pk/$', 'eliminar_publicacion', name='eliminar_publicacion'),
                        )

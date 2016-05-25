@@ -89,6 +89,7 @@
       {{ publicacion.texto }}
     </p>
     <hr>
+    <a href="{% url 'eliminar_publicacion' publicacion.id %}"<li>Eliminar publicación {{ publicacion.id }}</li></a>
   </div>
   {% endfor %}
 
