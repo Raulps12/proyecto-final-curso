@@ -28,12 +28,20 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 	padding-top: 15px;
 }
 
+.cabecera_usuario > img{
+	margin-top: -15px;
+	width: 35px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
 .img_usuario{
 	border: 4px solid white;
 	position: relative;
 	margin-top: -60px;
 	width: 120px;
 	box-shadow: 0 4px 2px rgba(0, 0, 0, 0.3);
+	outline: none;
 }
 
 .cabecera_usuario h2{
@@ -137,6 +145,38 @@ hr{
 	margin-top: -20px;
 }
 
+.back-to-top {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    text-decoration: none;
+    display: none;
+}
+
+.subir{
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	padding-top: 2px;
+	text-align: center;
+	color: #fc8608;
+	font-size: 25px;
+	box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+}
+
+.papelera{
+}
+
+.papelera > a{
+	color: #fc8608;
+	font-size: 25px;
+}
+
+.papelera > a:hover{
+	color: #e27603;
+	font-size: 25px;
+}
+
 /* Dispositivos pequeños (tablets, anchura mayor o igual a 768px) */
 @media (max-width: 380px) {
 	#crear_publi {
@@ -162,8 +202,10 @@ hr{
 	  width: 30%;
 	}
 	.cabecera_usuario{
-		width: 75%;
-		margin-left: 12.5%;
+		width: 85%;
+		margin-left: 7.5%;
+		/*width: 75%;
+		margin-left: 12.5%;*/
 	}
 }
 @media (min-width: 768px) {
@@ -183,8 +225,10 @@ hr{
 		margin-left: 12.5%;
 	}
 	.cabecera_usuario{
-		width: 65%;
-		margin-left: 17.5%;
+		width: 75%;
+		margin-left: 12.5%;
+		/*width: 65%;
+		margin-left: 17.5%;*/
 	}
 }
 /* Dispositivos medianos (ordenadores, anchura mayor o igual a 992px) */
@@ -207,8 +251,10 @@ hr{
 		margin-left: 22.5%;
 	}
 	.cabecera_usuario{
-		width: 45%;
-		margin-left: 27.5%;
+		width: 55%;
+		margin-left: 22.5%;
+		/*width: 45%;
+		margin-left: 27.5%;*/
 	}
 	.interior_publicacion{
 		width: 80%;
@@ -237,8 +283,10 @@ hr{
 		font-size: 22px;
 	}
 	.cabecera_usuario{
-		width: 45%;
-		margin-left: 27.5%;
+		width: 55%;
+		margin-left: 22.5%;
+		/*width: 45%;
+		margin-left: 27.5%;*/
 	}
 	.interior_publicacion{
 		width: 80%;

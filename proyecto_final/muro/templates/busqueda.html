@@ -8,7 +8,8 @@
 	{% for usuario in usuarios %}
 	<a href="{% url 'visita_muro' usuario.pk %}"<li>{{ usuario.username }}</li></a>
 	{% empty %}
-		<li>No hay usuarios relacionados con su búsqueda</li>
+		<li>No se han encontrado resultados para tu búsqueda.
+Comprueba que el término de búsqueda no contiene errores o busca otro término.</li>
 	</ul>
 	{% endfor %}
 	
