@@ -1,0 +1,27 @@
+$color = #37b4af
+$color2 = #e27603
+$value = 0px 0px $color
+$length = 50
+
+long-shadow-value($color)
+  for $i in 1..$length
+    $value = $value, unit($i, px) unit($i, px) $color
+  return $value
+
+long-shadow($color)
+  text-shadow long-shadow-value($color)
+
+.md-long-shadow > h2
+    color #fff
+    long-shadow(darken($color, 0%))
+    
+long-shadow-value2($color2)
+  for $i in 1..$length
+    $value = $value, unit($i, px) unit($i, px) $color2
+  return $value
+
+long-shadow2($color2)
+  text-shadow long-shadow-value2($color2)
+    
+.md-long-shadow
+    long-shadow2(darken($color2, 0%))

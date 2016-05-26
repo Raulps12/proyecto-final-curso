@@ -8,6 +8,7 @@
 {% block head_added %}
 <link href="{% static "css/modal_avatar.css" %}" rel="stylesheet">
 <link href="{% static "css/muro.css" %}" rel="stylesheet">
+<link href="{% static "css/long_shadow.css" %}" rel="stylesheet">
 <link href="{% static "css/icono_buscar.css" %}" rel="stylesheet">
 {% endblock %}
 
@@ -17,22 +18,23 @@
 
 <div class="muro">
 
-  <!--<a href="{% url 'avatar_change' %}" data-toggle="modal" data-target="#theModal">{% avatar user %}</a>-->
-
   <div class="buscar">
     <form action="{% url 'busqueda' %}" method="get" id="content">
       <input type="text" name="s" class="input">
       <button type="reset" class="search"></button>
     </form>
+    <a href=""><button class="btn" id="busqueda_a" type="submit">Búsqueda Avanzada</button></a>
   </div>
+
+  <!--<a href="{% url 'avatar_change' %}" data-toggle="modal" data-target="#theModal">{% avatar user %}</a>-->
 
   <div class="cabecera_usuario">
 
     <div class="cabecera_interior">
-
-      <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-      <h2><span> {{ user.username }}</span></h2>
-
+      <div class="cabecera_nombre md-long-shadow">
+        <h2><span> {{ user.username }}</span></h2>
+        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+      </div>
     </div>
 
     <a href="{% url 'avatar_change' %}" data-toggle="modal" data-target="#theModal"><img src="{% avatar_url user %}" class="img-circle img_usuario"></a>
@@ -45,20 +47,23 @@
     </div>
 
     <!--<hr class="hr_1">-->
+    <div class="cabecera_descripcion">
+      <h3>{{ user.profile.descripcion }}</h3>
+    </div>
+    
+    <!-- <hr class="hr_2"> -->
 
-    <h3>{{ user.profile.descripcion }}</h3>
+    <div class="cabecera_deportes">
+      {% for deporte in user.profile.deportes.all %}
 
-    <hr class="hr_2">
+      {{ deporte }}
 
-    {% for deporte in user.profile.deportes.all %}
-
-    {{ deporte }}
-
-    {% endfor %}
+      {% endfor %}
+    </div>
 
   </div>
 
-  <a href="{% url "crear_publicacion" %}"><button class="btn" id="crear_publi" type="submit">Crear Publicación</button></a>
+  <a href="{% url "crear_publicacion" %} "><button class="btn" id="crear_publi" type="submit">Crear Publicación</button></a>
 
   
   {% for publicacion in publicaciones %}

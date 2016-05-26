@@ -1,10 +1,13 @@
 .buscar{
+  /*border: 1px solid orange;*/
+  width: 55%;
+  margin-left: 22.5%;
+  margin-top: -10px;
 }
 
 .buscar #content {
-  margin-left: 84%;
-  margin-top: 20px;
-  transform: translate(-50%, -50%);
+  margin-left: 77%;
+  transform: translate(-50%, 17%);
 }
 
 .buscar #content.on {
@@ -132,4 +135,49 @@ color: #fc8608;
   -webkit-transform: translate(-100%, -50%);
   -ms-transform: translate(-100%, -50%);
   transform: translate(-100%, -50%);
+}
+
+@media (min-width: 200px) {
+  .buscar{
+    visibility: hidden;
+  }
+}
+
+@media (min-width: 380px) {
+  .buscar{
+    visibility: hidden;
+  }
+}
+
+@media (min-width: 600px) {
+  .buscar{
+    visibility: hidden;
+  }
+}
+
+@media (min-width: 768px) {
+  .buscar{
+    visibility: hidden;
+  }
+}
+
+
+@media (min-width: 992px) {
+  .buscar{
+    visibility: visible;
+  }
+  .buscar #content {
+    margin-left: 75%;
+    transform: translate(-50%, 17%);
+  }
+}
+
+@media (min-width: 1200px) {
+  .buscar{
+    visibility: visible;
+  }
+  .buscar #content {
+    margin-left: 78%;
+    transform: translate(-50%, 17%);
+  }
 }

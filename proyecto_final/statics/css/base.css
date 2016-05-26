@@ -50,7 +50,7 @@ body::-webkit-scrollbar-thumb{
 }
 .foot_text {
   color: #fff;
-  text-shadow: 1px 1px 0px #727171;
+  /*text-shadow: 1px 1px 0px #727171;*/
 }
 .center {
   text-align: center;
