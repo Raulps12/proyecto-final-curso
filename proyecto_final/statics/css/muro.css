@@ -2,7 +2,7 @@
 	width: 100%;
 	margin-left: 0%;
 	margin-top: -50px;
-	margin-bottom: -10px;
+	margin-bottom: -30px;
 	color: #B0B0B0;
 	padding-top: 60px;
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+50,ffffff+50&0+0,1+10,1+90,0+100 */
@@ -138,12 +138,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 
 .titulo_publicacion{
 	font-weight: bolder;
-	color: #8B8B8B;
+	color: #fc8608;
 	font-size: 20px;
 	margin-top: 35px;
 }
 
 hr{
+	background-color: #5fceca;
+	height: 1px;
 	margin-top: 10px !important;
 	margin-bottom: 20px !important;
 }

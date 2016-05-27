@@ -76,13 +76,18 @@
     </h2>
     <hr>
     <div class="interior_publicacion">
-      <div class="embed-responsive embed-responsive-16by9 video_publicacion">
-        {% video publicacion.video as my_video %}
-        {% video my_video %}
-        {% endvideo %}
-      </div>
 
-      <img src="{{ publicacion.imagen.url }}" alt="..." class="img-thumbnail center-block imagen_publicacion">
+        {% video publicacion.video as my_video %}
+          {% if my_video != '' %}
+            <div class="embed-responsive embed-responsive-16by9 video_publicacion">
+              {% video my_video %}
+            </div>
+          {% endif %}
+        {% endvideo %}
+
+      {% if publicacion.imagen.url != '' %}
+        <img src="{{ publicacion.imagen.url }}" alt="..." class="img-thumbnail center-block imagen_publicacion">
+      {% endif %}
     </div>
     <hr>
     <p class="texto_publicacion">
@@ -93,10 +98,35 @@
     <div class="papelera">
         <a href="{% url 'eliminar_publicacion' publicacion.id %}" title="Borrar"><i class="fa fa-trash"></i></a>
     </div>
+    <a href="{% url 'editar_publicacion' publicacion.id %}" title="Editar">Editar publicación</a>
+
+    <div class="col-lg-6">
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_borrar_publi" data-id-publi="{{ publicacion.id }}">
+        {% trans "Delete news" %}
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_borrar_publi" tabindex="-1" role="dialog" aria-labelledby="modal_borrar_publiLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="modal_borrar_publiLabel">{% trans "Are you sure that you want to delete this news?" %}</h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+            <button id="borrarPublicacionSubmit" type="button" class="btn btn-primary">{% trans "Delete" %}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
   </div>
   {% endfor %}
 
-
+<!--
   <div class="row paginacion">
    <ul class="pagination pagination-sm">
 
@@ -123,11 +153,45 @@
     {% endif %}
 
   </ul>
-</div>
+</div> -->
 
 <a href="#" class="back-to-top"><div class="subir"><i class="fa fa-chevron-up"></i></div></a>
 
 </div>
+
+<!-- Esto es para la ventana modal de desea borrar -->
+<script type="text/javascript">
+  (function($){   //El jQuery se puede sustituir por $
+    $(document).ready(function () {
+      $("#borrarPublicacionSubmit").click(function(){
+        $.ajax("",
+          {method: 'post',
+           data: {csrfmiddlewaretoken: "{{ csrf_token }}"},
+           //data: {csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()},
+           success: function(){
+            window.location.href = "{% url "muro" %}";
+           }}); 
+      });
+    });
+  })(jQuery);
+</script>
+
+<script type="text/javascript">
+  $('#modal_borrar_publi').on('show.bs.modal', function(event){
+    var button = $(event.relatedTarget);
+    var id = button.data('id-publi');
+    $("#borrarPublicacionSubmit").click(function(){
+        $.ajax("/eliminar_publicacion/" + id + "/",
+          {method: 'post',
+           data: {csrfmiddlewaretoken: "{{ csrf_token }}"},
+           //data: {csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()},
+           success: function(){
+            window.location.href = "{% url "muro" %}";
+           }}); 
+      });
+  })
+
+</script>
 
 <!-- Esto es para el buscador -->
 <script type="text/javascript">

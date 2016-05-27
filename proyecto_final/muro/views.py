@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from .decorators import muro_decorator
 from django.template.response import TemplateResponse
+from datetime import datetime, date, timedelta
 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
@@ -74,6 +75,24 @@ def crear_publicacion(request):
 
     context = {'publicacion_form': publicacion_form, }
     return render(request, 'crear_publicacion.html', context)
+
+
+@login_required
+def editar_publicacion(request, publicacion_pk):
+    publicacion_item = get_object_or_404(Publicacion, pk=publicacion_pk)
+    publicacion_form = PublicacionForm(instance=publicacion_item)
+    if request.method == 'POST':
+        data = request.POST
+        publicacion_form = PublicacionForm(data=data, instance=publicacion_item)
+        if publicacion_form.is_valid():
+            publicacion = publicacion_form.save(commit=False)
+            publicacion.autor = request.user
+            publicacion.fecha_hora = datetime.now()
+            publicacion_form.save()
+            return redirect('muro')
+
+    context = {'publicacion_form': publicacion_form, }
+    return render(request, 'editar_publicacion.html', context)
 
 
 @login_required

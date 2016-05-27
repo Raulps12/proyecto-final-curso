@@ -6,11 +6,12 @@
 {% block content %}
 	<ul>
 	{% for usuario in usuarios %}
-	<a href="{% url 'visita_muro' usuario.pk %}"<li>{{ usuario.username }}</li></a>
+		{% if usuario.username != user.username %}
+			<a href="{% url 'visita_muro' usuario.pk %}"<li>{{ usuario.username }}</li></a>
+		{% endif %}
 	{% empty %}
 		<li>No se han encontrado resultados para tu búsqueda.
-Comprueba que el término de búsqueda no contiene errores o busca otro término.</li>
-	</ul>
+			Comprueba que el término de búsqueda no contiene errores o busca otro término.</li>
 	{% endfor %}
-	
+	</ul>
 {% endblock %}

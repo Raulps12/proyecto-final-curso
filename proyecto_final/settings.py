@@ -162,7 +162,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'proyecto_final', 'uploads')
 # del proyecto
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'proyecto_final', 'statics')]
 
-PAGINATION_PAGES = 2
+PAGINATION_PAGES = 20
 
 # Cosas para django-allauth
 
