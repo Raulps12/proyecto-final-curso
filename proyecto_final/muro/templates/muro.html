@@ -77,16 +77,16 @@
     <hr>
     <div class="interior_publicacion">
 
-        {% video publicacion.video as my_video %}
-          {% if my_video != '' %}
-            <div class="embed-responsive embed-responsive-16by9 video_publicacion">
-              {% video my_video %}
-            </div>
-          {% endif %}
-        {% endvideo %}
+      {% video publicacion.video as my_video %}
+      {% if my_video != '' %}
+      <div class="embed-responsive embed-responsive-16by9 video_publicacion">
+        {% video my_video %}
+      </div>
+      {% endif %}
+      {% endvideo %}
 
       {% if publicacion.imagen.url != '' %}
-        <img src="{{ publicacion.imagen.url }}" alt="..." class="img-thumbnail center-block imagen_publicacion">
+      <img src="{{ publicacion.imagen.url }}" alt="..." class="img-thumbnail center-block imagen_publicacion">
       {% endif %}
     </div>
     <hr>
@@ -95,15 +95,15 @@
     </p>
     <hr>
     <!-- <a href="{% url 'eliminar_publicacion' publicacion.id %}"<li>Eliminar publicación {{ publicacion.id }}</li></a> -->
-    <div class="papelera">
-        <a href="{% url 'eliminar_publicacion' publicacion.id %}" title="Borrar"><i class="fa fa-trash"></i></a>
-    </div>
-    <a href="{% url 'editar_publicacion' publicacion.id %}" title="Editar">Editar publicación</a>
+    <div class="div_papelera">
 
-    <div class="col-lg-6">
-    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_borrar_publi" data-id-publi="{{ publicacion.id }}">
-        {% trans "Delete news" %}
-    </button>
+      <button type="button" class="btn borrar_publicacion" data-toggle="modal" data-target="#modal_borrar_publi" data-id-publi="{{ publicacion.id }}" title="Borrar">
+        <img src="{% static "img/trash.png" %}" class="trash1">
+      </button>
+
+      <a href="{% url 'editar_publicacion' publicacion.id %}" title="Editar"><i class="fa fa-pencil"></i></a>
+
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="modal_borrar_publi" tabindex="-1" role="dialog" aria-labelledby="modal_borrar_publiLabel">
@@ -120,11 +120,10 @@
         </div>
       </div>
     </div>
-    </div>
-
-
+  
   </div>
-  {% endfor %}
+
+{% endfor %}
 
 <!--
   <div class="row paginacion">
@@ -166,11 +165,11 @@
       $("#borrarPublicacionSubmit").click(function(){
         $.ajax("",
           {method: 'post',
-           data: {csrfmiddlewaretoken: "{{ csrf_token }}"},
+          data: {csrfmiddlewaretoken: "{{ csrf_token }}"},
            //data: {csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()},
            success: function(){
             window.location.href = "{% url "muro" %}";
-           }}); 
+          }}); 
       });
     });
   })(jQuery);
@@ -181,14 +180,14 @@
     var button = $(event.relatedTarget);
     var id = button.data('id-publi');
     $("#borrarPublicacionSubmit").click(function(){
-        $.ajax("/eliminar_publicacion/" + id + "/",
-          {method: 'post',
-           data: {csrfmiddlewaretoken: "{{ csrf_token }}"},
+      $.ajax("/eliminar_publicacion/" + id + "/",
+        {method: 'post',
+        data: {csrfmiddlewaretoken: "{{ csrf_token }}"},
            //data: {csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()},
            success: function(){
             window.location.href = "{% url "muro" %}";
-           }}); 
-      });
+          }}); 
+    });
   })
 
 </script>
@@ -209,23 +208,23 @@
 
 <!-- Esto es para subir -->
 <script type="text/javascript">
-jQuery(document).ready(function() {
+  jQuery(document).ready(function() {
     var offset = 220;
     var duration = 500;
     jQuery(window).scroll(function() {
-        if (jQuery(this).scrollTop() > offset) {
-            jQuery('.back-to-top').fadeIn(duration);
-        } else {
-            jQuery('.back-to-top').fadeOut(duration);
-        }
+      if (jQuery(this).scrollTop() > offset) {
+        jQuery('.back-to-top').fadeIn(duration);
+      } else {
+        jQuery('.back-to-top').fadeOut(duration);
+      }
     });
     
     jQuery('.back-to-top').click(function(event) {
-        event.preventDefault();
-        jQuery('html, body').animate({scrollTop: 0}, duration);
-        return false;
+      event.preventDefault();
+      jQuery('html, body').animate({scrollTop: 0}, duration);
+      return false;
     })
-});
+  });
 </script>
 
 {% endblock %}

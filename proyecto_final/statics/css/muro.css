@@ -162,6 +162,7 @@ hr{
 	width: 90%;
 	margin-left: 5%;
 	margin-top: -10px;
+	color: #4E4E4E;
 }
 
 .paginacion{
@@ -188,17 +189,33 @@ hr{
 	box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
 }
 
-.papelera{
+.div_papelera{
+	float: right;
 }
 
-.papelera > a{
+.div_papelera > a{
 	color: #fc8608;
 	font-size: 25px;
 }
 
-.papelera > a:hover{
+.div_papelera > a:hover{
 	color: #e27603;
-	font-size: 25px;
+}
+
+.borrar_publicacion{
+	background-color: initial;
+	margin: 0px;
+	margin-right: 5px;
+	padding: 0 0 0 7px;
+}
+
+.trash1{
+	margin-top: -11px;
+	width: 22px;
+}
+
+.trash1:hover{
+	-webkit-filter: brightness(85%);
 }
 
 /* Dispositivos pequeños (tablets, anchura mayor o igual a 768px) */
@@ -444,8 +461,9 @@ hr{
 		z-index: 2;
 	}
 	.cabecera_usuario h3{
-		font-size: 12px;
+		font-size: 14px;
 		margin-top: 0px;
+		color: #8E8E8E;
 	}
 	.cabecera_deportes{
 		/*border: 1px solid orange;*/

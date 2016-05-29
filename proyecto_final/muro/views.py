@@ -35,7 +35,7 @@ def muro(request):
     # Aquí comprobamos si el usuario ya ha completado el formulario de registro
     user_form = UserForm(instance=request.user)
     perfil_form = PerfilForm(instance=Perfil.objects.get(owner=request.user))
-    if request.method == 'POSfT':
+    if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
         perfil_form = PerfilForm(
             request.POST, instance=Perfil.objects.get(owner=request.user))
