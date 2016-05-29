@@ -4,6 +4,10 @@
 {% load i18n %} 	#Esto es para la internacionalización
 {% load bootstrap3 %}
 
+{% block head_added %}
+    <link href="{% static "css/registro_perfil.css" %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 
 	<h2 class="enhorabuena">¡Enhorabuena!, sólo falta rellenar el siguiente formulario</h2>
