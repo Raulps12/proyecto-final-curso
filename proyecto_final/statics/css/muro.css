@@ -214,6 +214,22 @@ hr{
 	margin: 0px;
 	margin-right: 5px;
 	padding: 0 0 0 7px;
+	outline: none;
+}
+
+.borrar_publicacion:active{
+	outline: none;
+	border: none;
+}
+
+.borrar_publicacion:focus{
+	outline: none;
+	border: none;
+}
+
+.borrar_publicacion:target{
+	outline: none;
+	border: none;
 }
 
 .trash1{

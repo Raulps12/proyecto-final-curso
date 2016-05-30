@@ -24,8 +24,7 @@ from django.db.models import Q
 # def muro(request, perfil_pk):
 def muro(request):
 
-    publicaciones_filtro = Publicacion.objects.filter(
-        autor=request.user).order_by('-fecha_hora')
+    publicaciones_filtro = Publicacion.objects.filter(autor=request.user).order_by('-fecha_hora')
 
     paginator = Paginator(publicaciones_filtro, settings.PAGINATION_PAGES)
     page_default = 1
