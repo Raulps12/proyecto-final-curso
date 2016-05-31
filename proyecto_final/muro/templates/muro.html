@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <a href="{% url 'avatar_change' %}" data-toggle="modal" data-target="#theModal"><img src="{% avatar_url user %}" class="img-circle img_usuario"></a>
+    <a class="a_img_usuario" href="{% url 'avatar_change' %}" data-toggle="modal" data-target="#theModal"><img src="{% avatar_url user %}" class="img-circle img_usuario"></a>
 
     <div id="theModal" class="modal fade text-center">
       <div class="modal-dialog">
@@ -95,27 +95,29 @@
     </p>
     <hr>
     <!-- <a href="{% url 'eliminar_publicacion' publicacion.id %}"<li>Eliminar publicación {{ publicacion.id }}</li></a> -->
-    <div class="div_papelera">
+    <div class="pie_publicacion">
 
-      <a  class="btn borrar_publicacion" data-toggle="modal" data-target="#modal_borrar_publi" data-id-publi="{{ publicacion.id }}" title="Borrar" href="#?">
-        <img src="{% static "img/trash.png" %}" class="trash1">
+    <a  class="borrar_publicacion" data-toggle="modal" data-target="#modal_borrar_publi" data-id-publi="{{ publicacion.id }}" title="Borrar" href="#?">
+        <i class="fa fa-trash"></i>
       </a>
 
       <a href="{% url 'editar_publicacion' publicacion.id %}" title="Editar"><i class="fa fa-pencil"></i></a>
 
     </div>
+    {% if publicacion.comments.all.count > 0 %}
+      <a class="enlace_mostrar_ocultar" href="#?">Mostrar comentarios &#9660;</a>
 
-    <a id="displayText" href="javascript:toggle();">Mostrar comentarios</a>
-    <div id="toggleText" style="display: none">
+      <div class="div_comentarios" style="display: none">
       <!-- Usamos ya la publicación obtenida en el for padre -->
       {% for comentario in publicacion.comments.all %} 
-        <hr>
-        {{ comentario.autor.first_name }} {{ comentario.autor.last_name }}
-        {{ comentario.texto }}
-        {{ comentario.fecha_hora }}
-
+      <hr class="hr_comentario">
+      <img src="{% avatar_url comentario.autor %}" class="img-circle">
+      <p class="autor_comentario"><b>{{ comentario.autor.first_name }} {{ comentario.autor.last_name }}</b></p>
+      <p class="texto_comentario">{{ comentario.texto }}</p>
+      <p class="fecha_comentario">{{ comentario.fecha_hora }}</p><br>
       {% endfor %}
     </div>
+    {% endif %}
 
     <!-- Modal -->
     <div class="modal fade" id="modal_borrar_publi" tabindex="-1" role="dialog" aria-labelledby="modal_borrar_publiLabel">
@@ -132,10 +134,10 @@
         </div>
       </div>
     </div>
-  
+
   </div>
 
-{% endfor %}
+  {% endfor %}
 
 <!--
   <div class="row paginacion">
@@ -240,18 +242,25 @@
 </script>
 
 <!-- Div comentarios -->
-<script language="javascript"> 
-function toggle() {
-  var ele = document.getElementById("toggleText");
-  var text = document.getElementById("displayText");
-  if(ele.style.display == "block") {
-        ele.style.display = "none";
-    text.innerHTML = "Mostrar comentarios";
+<script language="javascript">
+
+$(".enlace_mostrar_ocultar").on('click', mostrar_comentarios);
+
+function mostrar_comentarios(evento) {
+  evento.preventDefault();
+  $enlace_mostrar_ocultar = $(evento.target);
+  $div_comentarios  = $enlace_mostrar_ocultar.next()
+
+  console.log($enlace_mostrar_ocultar);
+  console.log($div_comentarios);
+      if($div_comentarios.css('display') == "block") {
+      $div_comentarios.css('display', 'none');
+      $enlace_mostrar_ocultar.html("Mostrar comentarios &#9660;");
     }
-  else {
-    ele.style.display = "block";
-    text.innerHTML = "Ocultar comentarios";
-  }
+    else {
+      $div_comentarios.css('display', 'block');
+      $enlace_mostrar_ocultar.html("Ocultar comentarios &#9650;");
+    }
 } 
 </script>
 

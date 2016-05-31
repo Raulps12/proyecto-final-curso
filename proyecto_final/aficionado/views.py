@@ -6,8 +6,7 @@ from proyecto_final.aficionado.forms import UserForm, PerfilForm
 from .models import Perfil, Country, City
 
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from dal import autocomplete
 
@@ -25,7 +24,7 @@ def registro_perfil(request):
         if user_form.is_valid() and perfil_form.is_valid():
             user_form.save()
             perfil_form.save()
-        # return HttpResponseRedirect('../../')
+            return redirect(reverse('muro'))
         # De esta manera en vez de que busque un directorio,
         # le decimos que busque una función determinada y nos lleva
         # a la página en la que se encuentra esa función
