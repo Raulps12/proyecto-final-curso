@@ -58,6 +58,8 @@ INSTALLED_APPS = [
     'avatar',
     # Apps para Django-embed-video
     'embed_video',
+    # Apps para Django-debug-toolbar
+    'debug_toolbar'
 ]
 
 MIDDLEWARE_CLASSES = [

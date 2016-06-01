@@ -5,13 +5,25 @@
 
 {% block content %}
 	<ul>
-	{% for usuario in usuarios %}
-		{% if usuario.username != user.username %}
-			<a href="{% url 'visita_muro' usuario.pk %}"<li>{{ usuario.username }}</li></a>
-		{% endif %}
-	{% empty %}
+	{% if usuarios %}
+		{% for usuario in usuarios %}
+			{% if usuario.username != user.username %}
+				<a href="{% url 'visita_muro' usuario.pk %}"<li>{{ usuario.username }}</li></a>
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+
+	{% if perfiles %}
+		{% for perfil in perfiles %}
+			{% if perfil.owner.username != user.username %}
+				<a href="{% url 'visita_muro' perfil.owner.pk %}"<li>{{ perfil.owner.username }}</li></a>
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+
+	{% if not usuarios and not perfiles %}
 		<li>No se han encontrado resultados para tu búsqueda.
-			Comprueba que el término de búsqueda no contiene errores o busca otro término.</li>
-	{% endfor %}
+				Comprueba que el término de búsqueda no contiene errores o busca otro término.</li>
+	{% endif %}
 	</ul>
 {% endblock %}

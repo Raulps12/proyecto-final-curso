@@ -75,7 +75,8 @@ def editar_publicacion(request, publicacion_pk):
     publicacion_form = PublicacionForm(instance=publicacion_item)
     if request.method == 'POST':
         data = request.POST
-        publicacion_form = PublicacionForm(data=data, instance=publicacion_item)
+        publicacion_form = PublicacionForm(
+            data=data, instance=publicacion_item)
         if publicacion_form.is_valid():
             publicacion = publicacion_form.save(commit=False)
             publicacion.autor = request.user
@@ -128,11 +129,20 @@ def busqueda(request):
 
 @login_required
 def busqueda_avanzada(request):
-    perfil_form = PerfilBusquedaAvanzadaForm()
+    busqueda_form = PerfilBusquedaAvanzadaForm()
+    context = {}
 
-    usuarios = Perfil.objects.filter(Q(pais__exact=request.GET['pais']) and Q(ciudad__exact=request.GET['ciudad']))
+    if request.method == 'GET':
+        # import ipdb; ipdb.set_trace()
+        data = request.GET
+        busqueda_form = PerfilBusquedaAvanzadaForm(data=data)
+        if busqueda_form.is_valid():
+            # usuarios = Perfil.objects.filter(pais=request.GET['pais'], ciudad=request.GET['ciudad'])
+            perfiles = Perfil.objects.filter(pais=busqueda_form.cleaned_data[
+                                             'pais'], ciudad=busqueda_form.cleaned_data['ciudad'],
+                                             deportes__in=busqueda_form.cleaned_data['deportes']).distinct()
+            context.update({'perfiles': perfiles})
+            return render(request, 'resultado_busqueda.html', context)
 
-    # context = {'usuarios': usuarios}
-    # return render(request, 'resultado_busqueda.html', context)
-    context = {'perfil_form': perfil_form, 'usuarios': usuarios}
+    context.update({'busqueda_form': busqueda_form})
     return render(request, 'busqueda_avanzada.html', context)
