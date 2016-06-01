@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% load i18n %} 	#Esto es para la internacionalización
+{% load bootstrap3 %}
+
+{% block head_added %}
+    <link href="{% static "css/registro_perfil.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<main class="container" id="login">
+	<div class="class_registro" id="div_registro">
+			<form action="." method="post" class="user_form" role="form">
+				{% csrf_token %}
+
+				{% if user_form.errors %}
+                {% for error in user_form.non_field_errors %}
+	            <div class="alert alert-error" id="alert-error">
+	                <strong>&bull; {{ error|escape }}</strong>
+	            </div>
+	            {% endfor %}
+	            {% endif %}
+				{% if perfil_form.errors %}
+                {% for error in perfil_form.non_field_errors %}
+	            <div class="alert alert-error" id="alert-error">
+	                <strong>&bull; {{ error|escape }}</strong>
+	            </div>
+	            {% endfor %}
+	            {% endif %}
+
+				{% for error in user_form.first_name.errors %}
+	            	<div class="alert alert-error" id="alert-error"> <strong>&bull; {{ error|escape }}</strong>
+	            	</div>
+	            {% endfor %}
+				<label class="titulo">Nombre</label>
+				<div id="div_id_name" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-user"></i>
+	                        </div>
+	       					{{ user_form.first_name }}
+	                    </div>
+	                </div>
+            	</div>
+				
+				{% for error in user_form.last_name.errors %}
+	            	<div class="alert alert-error" id="alert-error"> <strong>&bull; {{ error|escape }}</strong>
+	            	</div>
+	            {% endfor %}
+				<label class="titulo">Apellidos</label>
+            	<div id="div_id_lastname" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-user"></i>
+	                        </div>
+	                        {{ user_form.last_name }}
+	                    </div>
+	                </div>
+            	</div>
+				
+				{% for error in perfil_form.pais.errors %}
+	            	<div class="alert alert-error" id="alert-error"> <strong>&bull; {{ error|escape }}</strong>
+	            	</div>
+	            {% endfor %}
+				<label class="titulo">País</label>
+            	<div id="div_id_country" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-flag"></i>
+	                        </div>
+	                        {{ perfil_form.pais }}
+	                    </div>
+	                </div>
+            	</div>
+				
+				{% for error in perfil_form.ciudad.errors %}
+	            	<div class="alert alert-error" id="alert-error"> <strong>&bull; {{ error|escape }}</strong>
+	            	</div>
+	            {% endfor %}
+				<label class="titulo">Ciudad o localidad</label>
+            	<div id="div_id_city" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-flag"></i>
+	                        </div>
+	                        {{ perfil_form.ciudad }}
+	                    </div>
+	                </div>
+            	</div>
+				
+				{% for error in perfil_form.fecha_nac.errors %}
+	            	<div class="alert alert-error" id="alert-error"> <strong>&bull; {{ error|escape }}</strong>
+	            	</div>
+	            {% endfor %}
+				<label class="titulo">Fecha de nacimiento</label>
+            	{{ perfil_form.fecha_nac }}
+				
+				<br>
+				{% for error in perfil_form.descripcion.errors %}
+	            	<div class="alert alert-error" id="alert-error"> <strong>&bull; {{ error|escape }}</strong>
+	            	</div>
+	            {% endfor %}
+				<label class="titulo">Descripción personal en el ámbito deportivo</label>
+            	{{ perfil_form.descripcion }}
+				
+				<br>
+				{% for error in perfil_form.profesional.errors %}
+	            	<div class="alert alert-error" id="alert-error"> <strong>&bull; {{ error|escape }}</strong>
+	            	</div>
+	            {% endfor %}
+				<label class="titulo">Si eres profesional del deporte indícanoslo</label><br>
+            	{{ perfil_form.profesional }}<label class="titulo2">&nbsp;Profesional</label>
+				
+				{% buttons %}
+		        	<button class="btn" id="completar" type="submit">Editar
+		        	</button>
+		    	{% endbuttons %}
+			</form>
+	</div>
+</main>
+
+{% endblock %}

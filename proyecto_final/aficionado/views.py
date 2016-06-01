@@ -2,7 +2,7 @@
 # from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
-from proyecto_final.aficionado.forms import UserForm, PerfilForm
+from proyecto_final.aficionado.forms import UserForm, PerfilForm, PerfilEditarForm
 from .models import Perfil, Country, City
 
 from django.core.urlresolvers import reverse
@@ -31,6 +31,29 @@ def registro_perfil(request):
         # return HttpResponseRedirect(reverse('registro_perfil'))
     context = {'user_form': user_form, 'perfil_form': perfil_form, }
     return render(request, 'registro_perfil.html', context)
+    # le pasamos un contexto, que tiene clave y valor el contexto sirve para
+    # poder pasar la variable con su contenido a la plantilla
+
+
+@login_required
+def editar_perfil(request):
+    user_form = UserForm(instance=request.user)
+    perfil_form = PerfilEditarForm(instance=Perfil.objects.get(owner=request.user))
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        perfil_form = PerfilEditarForm(
+            request.POST, instance=Perfil.objects.get(owner=request.user))
+        # import pdb; pdb.set_trace()
+        if user_form.is_valid() and perfil_form.is_valid():
+            user_form.save()
+            perfil_form.save()
+            return redirect(reverse('muro'))
+        # De esta manera en vez de que busque un directorio,
+        # le decimos que busque una función determinada y nos lleva
+        # a la página en la que se encuentra esa función
+        # return HttpResponseRedirect(reverse('registro_perfil'))
+    context = {'user_form': user_form, 'perfil_form': perfil_form, }
+    return render(request, 'editar_perfil.html', context)
     # le pasamos un contexto, que tiene clave y valor el contexto sirve para
     # poder pasar la variable con su contenido a la plantilla
 

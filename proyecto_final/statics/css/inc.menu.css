@@ -22,15 +22,83 @@
 .admin {
   width: 20px;
 }
+.div_logout{
+  float: right;
+}
 .logout {
   width: 27px;
   margin-left: 10px;
+  float: right;
 }
 .logout:hover {
   -webkit-filter: brightness(85%);
 }
 .miniatura_usuario{
   width: 32px;
+}
+.div_nombre_usuario{
+  float: right;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.div_nombre_usuario li{
+  list-style: none;
+}
+.dropdown-menu{
+  background: #5fceca !important;
+  min-width: 10px !important;
+}
+.editar{
+  background: #5fceca !important;
+  font-size: 14px !important;
+  text-decoration: none !important;
+  font-weight: bold !important;
+  color: #fff !important;
+}
+.editar:hover{
+  color: #EAEAEA !important;
+}
+.nombre_usuario{
+  color: #fff;
+  /*text-shadow: 1px 1px 0px #727171;*/
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.nombre_usuario:hover{
+  color: #EAEAEA;
+  /*text-shadow: 1px 1px 0px #727171;*/
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.nombre_usuario:focus{
+  color: #fff;
+  /*text-shadow: 1px 1px 0px #727171;*/
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.nombre_usuario2{
+  color: #fff;
+  /*text-shadow: 1px 1px 0px #727171;*/
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.nombre_usuario2:hover{
+  color: #fff;
+  /*text-shadow: 1px 1px 0px #727171;*/
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.nombre_usuario2:focus{
+  color: #fff;
+  /*text-shadow: 1px 1px 0px #727171;*/
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 @media (max-width: 350px) {

@@ -19,11 +19,13 @@
 <div class="muro">
 
   <div class="buscar">
+    {% csrf_token %}
     <form action="{% url 'busqueda' %}" method="get" id="content">
       <input type="text" name="s" class="input">
       <button type="reset" class="search"></button>
     </form>
-    <a href=""><button class="btn" id="busqueda_a" type="submit">Búsqueda Avanzada</button></a>
+
+    <a href="{% url 'busqueda_avanzada' %}"><button class="btn" id="busqueda_a" type="submit">Búsqueda Avanzada</button></a>
   </div>
 
   <!--<a href="{% url 'avatar_change' %}" data-toggle="modal" data-target="#theModal">{% avatar user %}</a>-->
@@ -105,7 +107,7 @@
 
     </div>
     {% if publicacion.comments.all.count > 0 %}
-      <a class="enlace_mostrar_ocultar" href="#?">Mostrar comentarios &#9660;</a>
+      <a class="enlace_mostrar_ocultar" href="#?">Mostrar comentarios({{ publicacion.comments.all.count }}) &#9660;</a>
 
       <div class="div_comentarios" style="display: none">
       <!-- Usamos ya la publicación obtenida en el for padre -->
@@ -255,7 +257,7 @@ function mostrar_comentarios(evento) {
   console.log($div_comentarios);
       if($div_comentarios.css('display') == "block") {
       $div_comentarios.css('display', 'none');
-      $enlace_mostrar_ocultar.html("Mostrar comentarios &#9660;");
+      $enlace_mostrar_ocultar.html("Mostrar comentarios({{ publicacion.comments.all.count }}) &#9660;");
     }
     else {
       $div_comentarios.css('display', 'block');

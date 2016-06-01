@@ -56,3 +56,37 @@ class PerfilAdminForm(forms.ModelForm):
             'pais': autocomplete.ModelSelect2(url='country-autocomplete'),
             'ciudad': autocomplete.ModelSelect2(url='city-autocomplete', forward=['pais'])
         }
+
+
+class PerfilEditarForm(forms.ModelForm):
+
+    class Meta:
+        dateTimeOptions = {
+            'format': 'dd/mm/yyyy',
+            'autoclose': True,
+            'startView': 4,
+            'showMeridian': True
+        }
+        model = Perfil
+        fields = ['pais', 'ciudad', 'descripcion',
+                  'fecha_nac', 'profesional']
+        widgets = {
+            'fecha_nac': DateWidget(usel10n=True, bootstrap_version=3, options=dateTimeOptions, attrs={'class': 'datetimepicker', 'required': 'true'}),
+            'descripcion': forms.Textarea(
+                attrs={'class': 'textinput form-control input-lg', 'placeholder': 'Descripción', 'required': 'true', 'id': 'descripcion'}),
+            'pais': autocomplete.ModelSelect2(url='country-autocomplete', attrs={'required': 'true'}),
+            'ciudad': autocomplete.ModelSelect2(url='city-autocomplete', forward=['pais'], attrs={'required': 'true'})
+        }
+
+
+class PerfilEditarAdminForm(forms.ModelForm):
+
+    class Meta:
+        model = Perfil
+        fields = ('__all__')
+        widgets = {
+            'descripcion': forms.Textarea(
+                attrs={'class': 'textinput form-control input-lg', 'placeholder': 'Descripción'}),
+            'pais': autocomplete.ModelSelect2(url='country-autocomplete'),
+            'ciudad': autocomplete.ModelSelect2(url='city-autocomplete', forward=['pais'])
+        }

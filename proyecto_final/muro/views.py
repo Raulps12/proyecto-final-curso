@@ -15,7 +15,7 @@ from django.core.urlresolvers import reverse
 from proyecto_final.aficionado.models import Perfil
 from proyecto_final.aficionado.forms import UserForm, PerfilForm
 from .models import Publicacion
-from .forms import PublicacionForm
+from .forms import PublicacionForm, PerfilBusquedaAvanzadaForm
 from django.db.models import Q
 
 # Create your views here.
@@ -75,8 +75,7 @@ def editar_publicacion(request, publicacion_pk):
     publicacion_form = PublicacionForm(instance=publicacion_item)
     if request.method == 'POST':
         data = request.POST
-        publicacion_form = PublicacionForm(
-            data=data, instance=publicacion_item)
+        publicacion_form = PublicacionForm(data=data, instance=publicacion_item)
         if publicacion_form.is_valid():
             publicacion = publicacion_form.save(commit=False)
             publicacion.autor = request.user
@@ -124,4 +123,16 @@ def busqueda(request):
         first_name__icontains=request.GET['s']) | Q(last_name__icontains=request.GET['s']))
 
     context = {'usuarios': usuarios}
-    return render(request, 'busqueda.html', context)
+    return render(request, 'resultado_busqueda.html', context)
+
+
+@login_required
+def busqueda_avanzada(request):
+    perfil_form = PerfilBusquedaAvanzadaForm()
+
+    usuarios = Perfil.objects.filter(Q(pais__exact=request.GET['pais']) and Q(ciudad__exact=request.GET['ciudad']))
+
+    # context = {'usuarios': usuarios}
+    # return render(request, 'resultado_busqueda.html', context)
+    context = {'perfil_form': perfil_form, 'usuarios': usuarios}
+    return render(request, 'busqueda_avanzada.html', context)

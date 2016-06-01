@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% load i18n %} 	#Esto es para la internacionalización
+{% load bootstrap3 %}
+
+{% block head_added %}
+    <link href="{% static "css/registro_perfil.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+				<form action="." method="get" class="user_form" role="form">
+				{% csrf_token %}
+
+				<div class="div_deportes">
+					<label class="titulo">Selecciona los deportes de tu búsqueda</label>
+					<hr class="hr_deportes">
+					<div data-toggle="buttons"> 
+					{% for checkbox in perfil_form.deportes %}
+	    				<label class="btn btn2-primary" style="position: relative;">
+	    				{{ checkbox.tag }} {{ checkbox.choice_label }}
+	    				</label>
+					{% endfor %}
+					</div>
+				</div>
+				<label class="titulo">País</label>
+            	<div id="div_id_country" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-flag"></i>
+	                        </div>
+	                        {{ perfil_form.pais }}
+	                    </div>
+	                </div>
+            	</div>
+
+				<label class="titulo">Ciudad o localidad</label>
+            	<div id="div_id_city" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-flag"></i>
+	                        </div>
+	                        {{ perfil_form.ciudad }}
+	                    </div>
+	                </div>
+            	</div>
+
+            	{% buttons %}
+		        	<button class="btn" id="completar" type="submit">Buscar
+		        	</button>
+		    	{% endbuttons %}
+
+            </form>
+
+
+    <script>
+    	$("input[name='deportes']" ).on('change', function(){
+    		if($(this).is(':checked')){
+    			$(this).parent().append('<div class="opacidad" id="opacidad" alt="" ></div> ');
+    			$(this).parent().append('<img src="{% static "img/tick.png" %}" class="chekeo" id="checkeo" alt="" /> ');
+    		} else {
+    			$(this).parent().find('.chekeo').hide();
+    			$(this).parent().find('.opacidad').hide();
+    		}
+    	});
+    </script>
+{% endblock %}
