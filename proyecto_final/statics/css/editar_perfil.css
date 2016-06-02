@@ -132,12 +132,6 @@ textarea{
 #completar:hover {
     -webkit-filter: brightness(85%);
 }
-#label_ciudad{
-    display: none;
-}
-#div_id_city{
-    display: none;
-}
 
 
 /* Dispositivos pequeños (tablets, anchura mayor o igual a 768px) */

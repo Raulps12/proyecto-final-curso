@@ -51,7 +51,7 @@
 	            	<div class="alert alert-error" id="alert-error"> <strong>&bull; {{ error|escape }}</strong>
 	            	</div>
 	            {% endfor %}
-				<label class="titulo">Ciudad o localidad</label>
+				<label class="titulo" id="label_ciudad">Ciudad o localidad</label>
             	<div id="div_id_city" class="form-group">
 	                <div class="controls ">
 	                    <div class="input-group">
@@ -79,6 +79,13 @@
     			$(this).parent().find('.chekeo').hide();
     			$(this).parent().find('.opacidad').hide();
     		}
+    	});
+    </script>
+    <script>
+    	$("select[name='pais']" ).on('change', function(){
+    		document.getElementById('label_ciudad').style.display = "initial";
+    		document.getElementById('div_id_city').style.display = "initial";
+    		//$("select[name='ciudad']" ).style.display = initial;
     	});
     </script>
 {% endblock %}

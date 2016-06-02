@@ -40,7 +40,7 @@ class PerfilForm(forms.ModelForm):
             'descripcion': forms.Textarea(
                 attrs={'class': 'textinput form-control input-lg', 'placeholder': 'Descripción', 'required': 'true', 'id': 'descripcion'}),
             'pais': autocomplete.ModelSelect2(url='country-autocomplete', attrs={'required': 'true'}),
-            'ciudad': autocomplete.ModelSelect2(url='city-autocomplete', forward=['pais'], attrs={'required': 'true'})
+            'ciudad': autocomplete.ModelSelect2(url='city-autocomplete', forward=['pais'], attrs={'required': 'true', 'id': 'ciudad'})
         }
 
 

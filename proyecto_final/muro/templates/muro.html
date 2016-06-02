@@ -99,7 +99,7 @@
     <!-- <a href="{% url 'eliminar_publicacion' publicacion.id %}"<li>Eliminar publicación {{ publicacion.id }}</li></a> -->
     <div class="pie_publicacion">
 
-    <a  class="borrar_publicacion" data-toggle="modal" data-target="#modal_borrar_publi" data-id-publi="{{ publicacion.id }}" title="Borrar" href="#?">
+      <a  class="borrar_publicacion" data-toggle="modal" data-target="#modal_borrar_publi" data-id-publi="{{ publicacion.id }}" title="Borrar" href="#?">
         <i class="fa fa-trash"></i>
       </a>
 
@@ -107,9 +107,10 @@
 
     </div>
     {% if publicacion.comments.all.count > 0 %}
-      <a class="enlace_mostrar_ocultar" href="#?">Mostrar comentarios({{ publicacion.comments.all.count }}) &#9660;</a>
+    <a class="enlace_mostrar_ocultar" href="#?">Mostrar comentarios({{ publicacion.comments.all.count }}) &#9660;</a>
 
-      <div class="div_comentarios" style="display: none">
+    {% if publicacion.comments.all.count == 1 %}
+    <div class="div_comentarios_small" style="display: none">
       <!-- Usamos ya la publicación obtenida en el for padre -->
       {% for comentario in publicacion.comments.all %} 
       <hr class="hr_comentario">
@@ -119,6 +120,20 @@
       <p class="fecha_comentario">{{ comentario.fecha_hora }}</p><br>
       {% endfor %}
     </div>
+    {% endif %}
+    
+    {% if publicacion.comments.all.count > 1 %}
+    <div class="div_comentarios" style="display: none">
+      <!-- Usamos ya la publicación obtenida en el for padre -->
+      {% for comentario in publicacion.comments.all %} 
+      <hr class="hr_comentario">
+      <img src="{% avatar_url comentario.autor %}" class="img-circle">
+      <p class="autor_comentario"><b>{{ comentario.autor.first_name }} {{ comentario.autor.last_name }}</b></p>
+      <p class="texto_comentario">{{ comentario.texto }}</p>
+      <p class="fecha_comentario">{{ comentario.fecha_hora }}</p><br>
+      {% endfor %}
+    </div>
+    {% endif %}
     {% endif %}
 
     <!-- Modal -->
@@ -246,16 +261,16 @@
 <!-- Div comentarios -->
 <script language="javascript">
 
-$(".enlace_mostrar_ocultar").on('click', mostrar_comentarios);
+  $(".enlace_mostrar_ocultar").on('click', mostrar_comentarios);
 
-function mostrar_comentarios(evento) {
-  evento.preventDefault();
-  $enlace_mostrar_ocultar = $(evento.target);
-  $div_comentarios  = $enlace_mostrar_ocultar.next()
+  function mostrar_comentarios(evento) {
+    evento.preventDefault();
+    $enlace_mostrar_ocultar = $(evento.target);
+    $div_comentarios  = $enlace_mostrar_ocultar.next()
 
-  console.log($enlace_mostrar_ocultar);
-  console.log($div_comentarios);
-      if($div_comentarios.css('display') == "block") {
+    console.log($enlace_mostrar_ocultar);
+    console.log($div_comentarios);
+    if($div_comentarios.css('display') == "block") {
       $div_comentarios.css('display', 'none');
       $enlace_mostrar_ocultar.html("Mostrar comentarios({{ publicacion.comments.all.count }}) &#9660;");
     }
@@ -263,7 +278,7 @@ function mostrar_comentarios(evento) {
       $div_comentarios.css('display', 'block');
       $enlace_mostrar_ocultar.html("Ocultar comentarios &#9650;");
     }
-} 
+  } 
 </script>
 
 {% endblock %}

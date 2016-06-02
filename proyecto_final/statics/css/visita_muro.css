@@ -242,6 +242,37 @@ hr{
 	width: 50px;
 	margin-top: -5px;
 }
+.div_comentarios_small{
+	margin-top: 60px;
+	overflow-y: scroll;
+	width: 100%;
+	height: 100px;
+}
+.div_comentarios_small::-webkit-scrollbar-track{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+.div_comentarios_small::-webkit-scrollbar{
+  width: 7px;
+  background-color: #F5F5F5;
+}
+.div_comentarios_small::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  background-color: #5fceca; 
+  background-image: -webkit-linear-gradient(45deg,
+                                            rgba(255, 255, 255, .2) 25%,
+                        transparent 25%,
+                        transparent 50%,
+                        rgba(255, 255, 255, .2) 50%,
+                        rgba(255, 255, 255, .2) 75%,
+                        transparent 75%,
+                        transparent)
+}
+.div_comentarios_small > img{
+	width: 50px;
+	margin-top: -5px;
+}
 .autor_comentario{
 	margin-top: -52px;
 	margin-left: 55px;
