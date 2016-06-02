@@ -14,8 +14,8 @@ from django.core.urlresolvers import reverse
 
 from proyecto_final.aficionado.models import Perfil
 from proyecto_final.aficionado.forms import UserForm, PerfilForm
-from .models import Publicacion
-from .forms import PublicacionForm, PerfilBusquedaAvanzadaForm
+from .models import Publicacion, Comentario
+from .forms import PublicacionForm, PerfilBusquedaAvanzadaForm, ComentarioForm
 from django.db.models import Q
 
 # Create your views here.
@@ -55,6 +55,30 @@ def muro(request):
 
 
 @login_required
+def visita_muro(request, usuario_pk):
+    usuario = User.objects.get(pk=usuario_pk)
+
+    publicaciones_filtro = Publicacion.objects.filter(
+        autor=usuario.id).order_by('-fecha_hora')
+
+    comentario_form = ComentarioForm()
+
+    context = {'usuario': usuario, 'publicaciones': publicaciones_filtro,
+               'comentario_form': comentario_form}
+    return render(request, 'visita_muro.html', context)
+
+
+"""
+@login_required
+@muro_decorator
+def visita_muro(request, usuario_pk):
+
+    context = {}
+    return TemplateResponse(request, 'visita_muro.html', context)
+"""
+
+
+@login_required
 def crear_publicacion(request):
     publicacion_form = PublicacionForm()
     if request.method == 'POST':
@@ -67,6 +91,29 @@ def crear_publicacion(request):
 
     context = {'publicacion_form': publicacion_form, }
     return render(request, 'crear_publicacion.html', context)
+
+
+@login_required
+def crear_comentario(request, publicacion_pk, usuario_pk):
+    usuario = User.objects.get(pk=usuario_pk)
+
+    publicaciones_filtro = Publicacion.objects.filter(
+        autor=usuario.id).order_by('-fecha_hora')
+
+    comentario_form = ComentarioForm()
+    if request.method == 'POST':
+        comentario_form = ComentarioForm(request.POST)
+        if comentario_form.is_valid():
+            comentario = comentario_form.save(commit=False)
+            comentario.autor = request.user
+            # comentario.fecha_hora = datetime.now()
+            comentario.publicacion_id = publicacion_pk
+            comentario_form.save()
+            return redirect(request.META.get('HTTP_REFERER'))
+
+    context = {'usuario': usuario, 'publicaciones': publicaciones_filtro,
+               'comentario_form': comentario_form, }
+    return render(request, 'visita_muro.html', context)
 
 
 @login_required
@@ -96,25 +143,6 @@ def eliminar_publicacion(request, publicacion_pk):
     publicacion.delete()
 
     return redirect(muro)
-
-
-@login_required
-def visita_muro(request, usuario_pk):
-
-    usuario = User.objects.get(pk=usuario_pk)
-
-    context = {'usuario': usuario, }
-    return render(request, 'visita_muro.html', context)
-
-
-"""
-@login_required
-@muro_decorator
-def visita_muro(request, usuario_pk):
-
-    context = {}
-    return TemplateResponse(request, 'visita_muro.html', context)
-"""
 
 
 @login_required

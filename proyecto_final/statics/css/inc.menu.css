@@ -34,7 +34,8 @@
   -webkit-filter: brightness(85%);
 }
 .miniatura_usuario{
-  width: 32px;
+  width: 34px;
+  border: 2px solid white;
 }
 .div_nombre_usuario{
   float: right;

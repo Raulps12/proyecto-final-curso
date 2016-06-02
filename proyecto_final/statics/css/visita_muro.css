@@ -1,0 +1,539 @@
+body {
+  background-image: url("../img/fondo-2.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.muro{
+	width: 100%;
+	margin-left: 0%;
+	margin-top: -50px;
+	margin-bottom: -30px;
+	color: #B0B0B0;
+	padding-top: 60px;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+50,ffffff+50&0+0,1+10,1+90,0+100 */
+background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 10%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 90%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 10%,rgba(255,255,255,1) 50%,rgba(255,255,255,1) 90%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 10%,rgba(255,255,255,1) 50%,rgba(255,255,255,1) 90%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+}
+
+.cabecera_usuario{
+	/*border: 1px solid #37b4af;*/
+	text-align: center;
+	width: 85%;
+	margin-left: 7.5%;
+	margin-bottom: 70px;
+}
+
+.cabecera_interior{
+	width: 100%;
+	height: 130px;
+	background-color: #5fceca;
+	border-radius: 100px 100px 0 0;
+	padding-top: 15px;
+	border: 1px solid white;
+}
+
+.cabecera_deportes > img{
+	margin-top: -15px;
+	width: 35px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.img_usuario{
+	border: 4px solid white;
+	position: relative;
+	margin-top: -60px;
+	width: 120px;
+	/*box-shadow: 0 4px 2px rgba(0, 0, 0, 0.3);*/
+	box-shadow: 0 0 0 5px #5fceca;
+}
+
+.cabecera_usuario h2{
+	font-size: 15px;
+	color: white;
+	font-weight: bold;
+	margin-top: 0;
+	/*text-shadow: 1px 1px 0px #727171;*/
+}
+
+.cabecera_usuario h2 span{
+	font-size: 17px;
+}
+
+.cabecera_usuario h3{
+	font-size: 12px;
+}
+
+.cabecera_usuario .hr_1{
+	background-color: #fc8608;
+	height: 10px;
+	border-radius: 10px;
+}
+
+.cabecera_usuario .hr_2{
+	width: 100%;
+	background-color: #5fceca;
+	height: 3px;
+	border-radius: 10px;
+}
+
+#busqueda_a {
+  width: 37%;
+  height: 30px;
+  background-color: #fc8608;
+  border: 1px solid #e27603;
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+  /*text-shadow: 1px 1px 0px #727171;*/
+  margin-top: -40px;
+  margin-right: 8%;
+  margin-bottom: 0px;
+  float: right;
+  position: relative;
+  padding: 0px;
+}
+
+#busqueda_a:hover {
+    -webkit-filter: brightness(85%);
+}
+
+.publicacion{
+	width: 85%;
+	margin-left: 7.5%;
+	margin-bottom: 20px;
+	border: 4px solid #5fceca;
+	border-radius: 20px;
+	padding: 15px;
+	box-shadow: rgba(220,220,220,0.65) 3px 3px 13px 2px inset;
+}
+
+.interior_publicacion{
+	width: 90%;
+	margin-left: 5%;
+}
+
+.fecha_hora{
+	float: right;
+	font-size: 12px;
+}
+
+.titulo_publicacion{
+	font-weight: bolder;
+	color: #fc8608;
+	font-size: 20px;
+	margin-top: 35px;
+}
+
+hr{
+	background-color: #5fceca;
+	height: 1px;
+	margin-top: 10px !important;
+	margin-bottom: 20px !important;
+}
+
+.video_publicacion{
+	margin-bottom: 15px;
+}
+
+.imagen_publicacion{
+	margin-bottom: 15px;
+}
+
+.texto_publicacion{
+	width: 90%;
+	margin-left: 5%;
+	margin-top: -10px;
+	color: #4E4E4E;
+}
+
+.paginacion{
+	margin-left: 7.5%;
+	margin-top: -20px;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    text-decoration: none;
+    display: none;
+}
+
+.subir{
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	padding-top: 2px;
+	text-align: center;
+	color: #fc8608;
+	font-size: 25px;
+	box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+}
+.pie_publicacion{
+	float: right;
+}
+.pie_publicacion > a{
+	color: #fc8608;
+	font-size: 25px;
+	text-decoration: none;
+}
+.pie_publicacion > a:hover{
+	color: #e27603;
+}
+.pie_publicacion > a:active{
+	outline: none;
+	border: none;
+}
+.pie_publicacion > a:focus{
+	outline: none;
+	border: none;
+}
+.borrar_publicacion{
+	margin-right: 7px;
+}
+.enlace_mostrar_ocultar{
+	color: #fc8608;
+	text-decoration: none;
+	margin-top: 14px;
+	float: left;
+
+}
+.enlace_mostrar_ocultar:hover{
+	text-decoration: none;
+	color: #e27603;
+}
+.enlace_mostrar_ocultar:focus{
+	text-decoration: none;
+	color: #fc8608;
+}
+.div_comentarios{
+	margin-top: 60px;
+	overflow-y: scroll;
+	width: 100%;
+	height: 200px;
+}
+.div_comentarios::-webkit-scrollbar-track{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+.div_comentarios::-webkit-scrollbar{
+  width: 7px;
+  background-color: #F5F5F5;
+}
+.div_comentarios::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  background-color: #5fceca; 
+  background-image: -webkit-linear-gradient(45deg,
+                                            rgba(255, 255, 255, .2) 25%,
+                        transparent 25%,
+                        transparent 50%,
+                        rgba(255, 255, 255, .2) 50%,
+                        rgba(255, 255, 255, .2) 75%,
+                        transparent 75%,
+                        transparent)
+}
+.div_comentarios > img{
+	width: 50px;
+	margin-top: -5px;
+}
+.autor_comentario{
+	margin-top: -52px;
+	margin-left: 55px;
+	color: #fc8608;
+	margin-right: 5px;
+}
+.texto_comentario{
+	margin-top: -7px;
+	margin-left: 55px;
+	color: #4E4E4E;
+	margin-right: 5px;
+	font-size: 13px;
+}
+.fecha_comentario{
+	float: right;
+	font-size: 10px;
+	margin-bottom: -10px;
+	margin-right: 5px;
+}
+.hr_comentario{
+	margin-top: -2px !important;
+}
+
+/* Dispositivos pequeños (tablets, anchura mayor o igual a 768px) */
+@media (max-width: 380px) {
+	#crear_publi {
+	  width: 39%;
+	  height: 25px;
+	  font-size: 12px;
+	  margin-right: 8%;
+	  margin-bottom: 0px;
+	}
+	.cabecera_usuario h2{
+		font-size: 12px;
+	}
+	.cabecera_usuario h2 span{
+		font-size: 15px;
+	}
+	.cabecera_descripcion{
+		margin-top: -12px;
+		margin-bottom: 20px;
+	}
+}
+@media (min-width: 400px) {
+	.cabecera_descripcion{
+		margin-top: -12px;
+		margin-bottom: 20px;
+	}
+
+}
+@media (min-width: 600px) {
+	.muro{
+		width: 90%;
+		margin-left: 5%;
+	}
+	#crear_publi {
+	  width: 30%;
+	}
+	.cabecera_usuario{
+		width: 85%;
+		margin-left: 7.5%;
+		/*width: 75%;
+		margin-left: 12.5%;*/
+	}
+	.cabecera_descripcion{
+		margin-top: -10px;
+		margin-bottom: 20px;
+	}
+}
+@media (min-width: 768px) {
+	.muro{
+		width: 90%;
+		margin-left: 5%;
+	}
+	#crear_publi {
+	  width: 25%;
+	  margin-right: 12.5%;
+	}
+	.publicacion{
+		width: 75%;
+		margin-left: 12.5%;
+	}
+	.paginacion{
+		margin-left: 12.5%;
+	}
+	.cabecera_usuario{
+		width: 75%;
+		margin-left: 12.5%;
+		/*width: 65%;
+		margin-left: 17.5%;*/
+	}
+}
+/* Dispositivos medianos (ordenadores, anchura mayor o igual a 992px) */
+@media (min-width: 992px) {
+	.muro{
+		width: 90%;
+		margin-left: 5%;
+		padding-top: 70px;
+	}
+	#crear_publi {
+	  width: 17%;
+	  height: 25px;
+	  margin-right: 22.5%;
+	}
+	.paginacion{
+		margin-left: 22.5%;
+	}
+	.cabecera_usuario{
+		width: 55%;
+		margin-left: 22.5%;
+		/*width: 45%;
+		margin-left: 27.5%;*/
+	}
+	.interior_publicacion{
+		width: 80%;
+		margin-left: 10%;
+	}
+	.publicacion{
+		width: 55%;
+		margin-left: 22.5%;
+	}
+
+
+	#crear_publi {
+	  width: 17%;
+	  height: 25px;
+	  margin-right: 60.5%;
+	}
+	.cabecera_usuario{
+		/*border: 1px solid orange;*/
+		width: 55%;
+		margin-left: 22.5%;
+		text-align: left; !important;
+		margin-top: 30px;
+		/*width: 45%;
+		margin-left: 27.5%;*/
+	}
+	.interior_publicacion{
+		width: 80%;
+		margin-left: 10%;
+	}
+	.img_usuario{
+		border: 6px solid white;
+		position: relative;
+		margin-top: -95px;
+		margin-left: 14px;
+		width: 170px;
+		box-shadow: 0 0 0 14px #5fceca;
+	}
+	.a_img_usuario:focus{
+		outline: 0;
+		border: 0;
+	}
+	.cabecera_nombre{
+		margin-left: 200px;
+		margin-top: 35px;
+	}
+	.cabecera_usuario h2{
+		font-size: 15px;
+		position: relative;
+		z-index: 1;
+	}
+
+	.cabecera_usuario h2 span{
+		font-size: 20px;
+	}
+	.cabecera_descripcion{
+		/*border: 1px solid orange;*/
+		background-color: white;
+		width: 57%;
+		margin-left: 43%;
+		padding: 12px 10px 5px 2px;
+		margin-top: -76px;
+		position: relative;
+		z-index: 2;
+	}
+	.cabecera_usuario h3{
+		font-size: 12px;
+		margin-top: 0px;
+	}
+	.cabecera_deportes{
+		/*border: 1px solid orange;*/
+		text-align: center;
+		width: 63%;
+		margin-left: 37%;
+		margin-top: 17px;
+	}
+	.cabecera_interior{
+		width: 100%;
+		height: 110px;
+		background-color: #5fceca;
+		border-radius: 100px 100px 0 0;
+		padding-top: 15px;
+		border: 1px solid white;
+	}
+	#busqueda_a {
+	  width: 35%;
+	  height: 25px;
+	  margin-right: 0%;
+	}
+
+}
+/* Dispositivos grandes (ordenadores, anchura mayor o igual a 1200px) */
+@media (min-width: 1200px) {
+	.muro{
+		width: 90%;
+		margin-left: 5%;
+	}
+	#crear_publi {
+	  width: 15%;
+	  height: 25px;
+	  margin-right: 62.6%;
+	}
+	.publicacion{
+		width: 55%;
+		margin-left: 22.5%;
+	}
+	.paginacion{
+		margin-left: 22.5%;
+	}
+	.titulo_publicacion{
+		font-size: 22px;
+	}
+
+
+	.cabecera_usuario{
+		/*border: 1px solid orange;*/
+		width: 55%;
+		margin-left: 22.5%;
+		text-align: left; !important;
+		margin-top: 40px;
+		/*width: 45%;
+		margin-left: 27.5%;*/
+	}
+	.interior_publicacion{
+		width: 80%;
+		margin-left: 10%;
+	}
+	.img_usuario{
+		border: 6px solid white;
+		position: relative;
+		margin-top: -95px;
+		margin-left: 14px;
+		width: 170px;
+		box-shadow: 0 0 0 14px #5fceca;
+	}
+	.cabecera_nombre{
+		margin-left: 210px;
+		margin-top: 25px;
+	}
+	.cabecera_usuario h2{
+		font-size: 18px;
+		position: relative;
+		z-index: 1;
+	}
+
+	.cabecera_usuario h2 span{
+		font-size: 24px;
+	}
+	.cabecera_descripcion{
+		/*border: 1px solid orange;*/
+		background-color: white;
+		width: 63%;
+		margin-left: 37%;
+		padding: 12px 10px 5px 2px;
+		margin-top: -76px;
+		position: relative;
+		z-index: 2;
+	}
+	.cabecera_usuario h3{
+		font-size: 14px;
+		margin-top: 0px;
+		color: #8E8E8E;
+	}
+	.cabecera_deportes{
+		/*border: 1px solid orange;*/
+		text-align: center;
+		width: 63%;
+		margin-left: 37%;
+		margin-top: 17px;
+	}
+	.cabecera_interior{
+		width: 100%;
+		height: 110px;
+		background-color: #5fceca;
+		border-radius: 100px 100px 0 0;
+		padding-top: 15px;
+		border: 1px solid white;
+	}
+	#busqueda_a {
+	  width: 30%;
+	  height: 25px;
+	  margin-right: 0%;
+	}
+}

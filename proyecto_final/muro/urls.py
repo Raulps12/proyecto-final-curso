@@ -18,4 +18,5 @@ urlpatterns = patterns('proyecto_final.muro.views',
                        url(r'^crear_publicacion/$', 'crear_publicacion', name='crear_publicacion'),
                        url(r'^editar_publicacion/:publicacion_pk/$', 'editar_publicacion', name='editar_publicacion'),
                        url(r'^eliminar_publicacion/:publicacion_pk/$', 'eliminar_publicacion', name='eliminar_publicacion'),
+                       url(r'^crear_comentario/:publicacion_pk/:usuario_pk/$', 'crear_comentario', name='crear_comentario'),
                        )

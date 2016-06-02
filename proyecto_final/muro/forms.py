@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from django import forms
-from .models import Publicacion
+from .models import Publicacion, Comentario
 from proyecto_final.aficionado.models import Perfil
 from dal import autocomplete
 
@@ -10,6 +10,14 @@ class PublicacionForm(forms.ModelForm):
     class Meta:
         model = Publicacion
         fields = ['titulo', 'video', 'imagen', 'texto']
+
+
+class ComentarioForm(forms.ModelForm):
+
+    class Meta:
+        model = Comentario
+        # fields = ['autor', 'texto', 'fecha_hora', 'publicacion']
+        fields = ['texto']
 
 
 class PerfilBusquedaAvanzadaForm(forms.ModelForm):
