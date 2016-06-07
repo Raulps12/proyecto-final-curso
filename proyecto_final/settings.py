@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'proyecto_final.aficionado',
     'proyecto_final.muro',
+    'proyecto_final.evento',
     # Apps para Django-allauth
     'django.contrib.sites',
     'allauth',
@@ -59,7 +60,11 @@ INSTALLED_APPS = [
     # Apps para Django-embed-video
     'embed_video',
     # Apps para Django-debug-toolbar
-    # 'debug_toolbar'
+    'debug_toolbar',
+    # Django EL(Endless) Pagination
+    'el_pagination',
+    # Django location field
+    'location_field.apps.DefaultConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -99,6 +104,7 @@ TEMPLATES = [
                 # allauth specific context processors
                 # "allauth.account.context_processors.account",
                 # "allauth.socialaccount.context_processors.socialaccount",
+                'django.core.context_processors.request',
             ],
         },
     },
@@ -209,3 +215,36 @@ CITIES_LIGHT_APP_NAME = 'aficionado'
 
 # Settings for django-avatar
 AVATAR_GRAVATAR_DEFAULT = 'http://icons.iconarchive.com/icons/graphicloads/100-flat/256/contact-icon.png'
+
+LOCATION_FIELD_PATH = STATIC_URL + 'location_field'
+
+LOCATION_FIELD = {
+    'map.provider': 'google',
+    'map.zoom': 13,
+
+    'search.provider': 'google',
+    'search.suffix': '',
+
+    # Google
+    'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
+    'provider.google.api_key': '',
+    'provider.google.api_libraries': '',
+    'provider.google.map.type': 'ROADMAP',
+
+    # Mapbox
+    'provider.mapbox.access_token': '',
+    'provider.mapbox.max_zoom': 18,
+    'provider.mapbox.id': 'mapbox.streets',
+
+    # OpenStreetMap
+    'provider.openstreetmap.max_zoom': 18,
+
+    # misc
+    'resources.root_path': LOCATION_FIELD_PATH,
+    'resources.media': {
+        'js': [
+            LOCATION_FIELD_PATH + '/js/jquery.livequery.js',
+            LOCATION_FIELD_PATH + '/js/form.js',
+        ],
+    },
+}

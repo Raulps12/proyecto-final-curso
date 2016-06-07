@@ -7,6 +7,7 @@ body {
 }
 .muro{
 	width: 100%;
+	min-height: 600px;
 	margin-left: 0%;
 	margin-top: -50px;
 	margin-bottom: -30px;
@@ -295,9 +296,53 @@ hr{
 .hr_comentario{
 	margin-top: -2px !important;
 }
+.button_comentar {
+  width: 90px;
+  height: 30px;
+  background-color: #fc8608;
+  border: 1px solid #e27603;
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+  /*text-shadow: 1px 1px 0px #727171;*/
+  margin-top: -20px;
+  margin-right: 0%;
+  margin-bottom: 0px;
+  float: right;
+  position: relative;
+  padding: 0px;
+}
+.button_comentar:hover {
+    -webkit-filter: brightness(85%);
+    color: #fff;
+}
+.texto_comentar{
+	resize: none;
+	height: 50px !important;
+	width: 82%;
+	margin-bottom: -10px;
+}
+.endless_more{
+	display: none !important;
+}
+.endless_loading{
+	display: none !important;
+}
+.cargando{
+	display: none;
+}
+
+@media (min-width: 320px) {
+	.button_comentar {
+	  width: 35px;
+	  margin-top: -12px;
+	  height: 22px;
+	  font-size: 7px;
+	}
+}
 
 /* Dispositivos pequeños (tablets, anchura mayor o igual a 768px) */
-@media (max-width: 380px) {
+@media (min-width: 380px) {
 	#crear_publi {
 	  width: 39%;
 	  height: 25px;
@@ -315,13 +360,24 @@ hr{
 		margin-top: -12px;
 		margin-bottom: 20px;
 	}
+	.button_comentar {
+	  width: 45px;
+	  margin-top: -16px;
+	  height: 25px;
+	  font-size: 9px;
+	}
 }
 @media (min-width: 400px) {
 	.cabecera_descripcion{
 		margin-top: -12px;
 		margin-bottom: 20px;
 	}
-
+	.button_comentar {
+	  width: 45px;
+	  margin-top: -16px;
+	  height: 25px;
+	  font-size: 9px;
+	}
 }
 @media (min-width: 600px) {
 	.muro{
@@ -340,6 +396,12 @@ hr{
 	.cabecera_descripcion{
 		margin-top: -10px;
 		margin-bottom: 20px;
+	}
+	.button_comentar {
+	  width: 70px;
+	  margin-top: -20px;
+	  height: 30px;
+	  font-size: 12px;
 	}
 }
 @media (min-width: 768px) {
@@ -363,6 +425,11 @@ hr{
 		margin-left: 12.5%;
 		/*width: 65%;
 		margin-left: 17.5%;*/
+	}
+	.button_comentar {
+	  width: 70px;
+	  height: 30px;
+	  font-size: 12px;
 	}
 }
 /* Dispositivos medianos (ordenadores, anchura mayor o igual a 992px) */
@@ -473,7 +540,11 @@ hr{
 	  height: 25px;
 	  margin-right: 0%;
 	}
-
+	.button_comentar {
+	  width: 70px;
+	  height: 30px;
+	  font-size: 12px;
+	}
 }
 /* Dispositivos grandes (ordenadores, anchura mayor o igual a 1200px) */
 @media (min-width: 1200px) {

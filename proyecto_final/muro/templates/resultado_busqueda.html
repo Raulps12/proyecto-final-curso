@@ -1,29 +1,62 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-
+{% load avatar_tags %}
 {% load bootstrap3 %}
 
+{% block head_added %}
+<link href="{% static "css/resultado_busqueda.css" %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-	<ul>
+<div class="fondo">
+
+	<h2><i class="fa fa-search"></i> Resultados de tu búsqueda...</h2>
+
 	{% if usuarios %}
 		{% for usuario in usuarios %}
 			{% if usuario.username != user.username %}
-				<a href="{% url 'visita_muro' usuario.pk %}"<li>{{ usuario.username }}</li></a>
+				<hr class="hr">
+				<div class="div_resultado_busqueda">
+				<img src="{% avatar_url usuario %}" class="img-circle img_usuario">
+
+				<a href="{% url 'visita_muro' usuario.pk %}">{{ usuario.first_name }} {{ usuario.last_name }} ({{ usuario.username }})</a>
+
+				      {% for deporte in usuario.profile.deportes.all %}
+
+					      <span class="deportes">{{ deporte }}</span>
+
+					  {% endfor %}
+				</div>
 			{% endif %}
 		{% endfor %}
+		<hr class="hr">
 	{% endif %}
 
+	
 	{% if perfiles %}
 		{% for perfil in perfiles %}
 			{% if perfil.owner.username != user.username %}
-				<a href="{% url 'visita_muro' perfil.owner.pk %}"<li>{{ perfil.owner.username }}</li></a>
+				<hr class="hr">
+				<div class="div_resultado_busqueda">
+				<img src="{% avatar_url perfil.owner %}" class="img-circle img_usuario">
+
+				<a href="{% url 'visita_muro' perfil.owner.pk %}">{{ perfil.owner.first_name }} {{ perfil.owner.last_name }} ({{ perfil.owner.username }})</a>
+
+				      {% for deporte in perfil.owner.profile.deportes.all %}
+
+					      <span class="deportes">{{ deporte }}</span>
+
+					  {% endfor %}
+				</div>
 			{% endif %}
 		{% endfor %}
+		<hr class="hr">
 	{% endif %}
 
 	{% if not usuarios and not perfiles %}
-		<li>No se han encontrado resultados para tu búsqueda.
-				Comprueba que el término de búsqueda no contiene errores o busca otro término.</li>
+		No se han encontrado resultados para tu búsqueda.
+				Comprueba que el término de búsqueda no contiene errores o busca otro término.
 	{% endif %}
-	</ul>
+
+</div>
 {% endblock %}

@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('proyecto_final.aficionado.urls')),
     url(r'', include('proyecto_final.muro.urls')),
+    url(r'', include('proyecto_final.evento.urls')),
     # Urls de Django-allauth
     url(r'^accounts/', include('allauth.urls')),
     # Urls de Cities-light

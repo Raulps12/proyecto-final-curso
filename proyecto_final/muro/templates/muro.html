@@ -3,7 +3,7 @@
 {% load avatar_tags %}
 {% load embed_video_tags %}
 
-{% load i18n %} 	#Esto es para la internacionalización
+{% load i18n %}
 {% load bootstrap3 %}
 {% block head_added %}
 <link href="{% static "css/modal_avatar.css" %}" rel="stylesheet">
@@ -67,127 +67,17 @@
 
   <a href="{% url "crear_publicacion" %} "><button class="btn" id="crear_publi" type="submit">Crear Publicación</button></a>
 
-  
-  {% for publicacion in publicaciones %}
-  <div class="row publicacion">
-    <p class="fecha_hora">
-      {{ publicacion.fecha_hora }}
-    </p>
-    <h2 class="titulo_publicacion">
-      {{ publicacion.titulo }}
-    </h2>
-    <hr>
-    <div class="interior_publicacion">
+  {% include page_template %}
+  <img src="{% static "img/cargando.gif" %}" class="cargando" id="cargando">
+  <br>
 
-      {% video publicacion.video as my_video %}
-      {% if my_video != '' %}
-      <div class="embed-responsive embed-responsive-16by9 video_publicacion">
-        {% video my_video %}
-      </div>
-      {% endif %}
-      {% endvideo %}
-
-      {% if publicacion.imagen.url != '' %}
-      <img src="{{ publicacion.imagen.url }}" alt="..." class="img-thumbnail center-block imagen_publicacion">
-      {% endif %}
-    </div>
-    <hr>
-    <p class="texto_publicacion">
-      {{ publicacion.texto }}
-    </p>
-    <hr>
-    <!-- <a href="{% url 'eliminar_publicacion' publicacion.id %}"<li>Eliminar publicación {{ publicacion.id }}</li></a> -->
-    <div class="pie_publicacion">
-
-      <a  class="borrar_publicacion" data-toggle="modal" data-target="#modal_borrar_publi" data-id-publi="{{ publicacion.id }}" title="Borrar" href="#?">
-        <i class="fa fa-trash"></i>
-      </a>
-
-      <a href="{% url 'editar_publicacion' publicacion.id %}" title="Editar"><i class="fa fa-pencil"></i></a>
-
-    </div>
-    {% if publicacion.comments.all.count > 0 %}
-    <a class="enlace_mostrar_ocultar" href="#?">Mostrar comentarios({{ publicacion.comments.all.count }}) &#9660;</a>
-
-    {% if publicacion.comments.all.count == 1 %}
-    <div class="div_comentarios_small" style="display: none">
-      <!-- Usamos ya la publicación obtenida en el for padre -->
-      {% for comentario in publicacion.comments.all %} 
-      <hr class="hr_comentario">
-      <img src="{% avatar_url comentario.autor %}" class="img-circle">
-      <p class="autor_comentario"><b>{{ comentario.autor.first_name }} {{ comentario.autor.last_name }}</b></p>
-      <p class="texto_comentario">{{ comentario.texto }}</p>
-      <p class="fecha_comentario">{{ comentario.fecha_hora }}</p><br>
-      {% endfor %}
-    </div>
-    {% endif %}
-    
-    {% if publicacion.comments.all.count > 1 %}
-    <div class="div_comentarios" style="display: none">
-      <!-- Usamos ya la publicación obtenida en el for padre -->
-      {% for comentario in publicacion.comments.all %} 
-      <hr class="hr_comentario">
-      <img src="{% avatar_url comentario.autor %}" class="img-circle">
-      <p class="autor_comentario"><b>{{ comentario.autor.first_name }} {{ comentario.autor.last_name }}</b></p>
-      <p class="texto_comentario">{{ comentario.texto }}</p>
-      <p class="fecha_comentario">{{ comentario.fecha_hora }}</p><br>
-      {% endfor %}
-    </div>
-    {% endif %}
-    {% endif %}
-
-    <!-- Modal -->
-    <div class="modal fade" id="modal_borrar_publi" tabindex="-1" role="dialog" aria-labelledby="modal_borrar_publiLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="modal_borrar_publiLabel">{% trans "Are you sure that you want to delete this news?" %}</h4>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
-            <button id="borrarPublicacionSubmit" type="button" class="btn btn-primary">{% trans "Delete" %}</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  {% endfor %}
-
-<!--
-  <div class="row paginacion">
-   <ul class="pagination pagination-sm">
-
-     {% if publicaciones.has_previous %}   
-     <li><a href="?page={{ publicaciones.previous_page_number }}">&laquo;</a></li>  
-     {% else %}
-     <li class="disabled">
-      <span>&laquo;</span>
-    </li>  
-    {% endif %}       
-
-    {% for i in publicaciones.paginator.page_range  %}
-
-    <li><a href="?page={{ i }}">{{ i }}</a></li>
-
-    {% endfor %}
-
-    {% if publicaciones.has_next %}   
-    <li><a href="?page={{ publicaciones.next_page_number }}">&raquo;</a></li>
-    {% else %}   
-    <li class="disabled">
-      <span>&raquo;</span>
-    </li>
-    {% endif %}
-
-  </ul>
-</div> -->
-
-<a href="#" class="back-to-top"><div class="subir"><i class="fa fa-chevron-up"></i></div></a>
+  <a href="#" class="back-to-top"><div class="subir"><i class="fa fa-chevron-up"></i></div></a>
 
 </div>
+
+{% endblock %}
+
+{% block extra_js %}
 
 <!-- Esto es para la ventana modal de desea borrar -->
 <script type="text/javascript">
@@ -260,16 +150,16 @@
 
 <!-- Div comentarios -->
 <script language="javascript">
-
-  $(".enlace_mostrar_ocultar").on('click', mostrar_comentarios);
+  // Lo ponemos de esta manera que es el modo live, para que no haya problemas con la carga de Ajax
+  $(document).on('click', '.enlace_mostrar_ocultar', mostrar_comentarios);
 
   function mostrar_comentarios(evento) {
     evento.preventDefault();
     $enlace_mostrar_ocultar = $(evento.target);
     $div_comentarios  = $enlace_mostrar_ocultar.next()
 
-    console.log($enlace_mostrar_ocultar);
-    console.log($div_comentarios);
+    //console.log($enlace_mostrar_ocultar);
+    //console.log($div_comentarios);
     if($div_comentarios.css('display') == "block") {
       $div_comentarios.css('display', 'none');
       $enlace_mostrar_ocultar.html("Mostrar comentarios({{ publicacion.comments.all.count }}) &#9660;");
@@ -279,6 +169,21 @@
       $enlace_mostrar_ocultar.html("Ocultar comentarios &#9650;");
     }
   } 
+</script>
+
+<!-- Scroll infinito -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="{% static "el-pagination/js/el-pagination.js" %}"></script>
+<script>$.endlessPaginate({paginateOnScroll: true});</script>
+
+<!-- Icono cargando -->
+<script type="text/javascript">
+  $(document).on('ajaxStart', function(){
+    $('.cargando').show();
+    console.log('Esta cargando');
+  }).on('ajaxStop', function(){
+    $('.cargando').hide();
+  });
 </script>
 
 {% endblock %}

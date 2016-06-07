@@ -19,6 +19,11 @@ class ComentarioForm(forms.ModelForm):
         # fields = ['autor', 'texto', 'fecha_hora', 'publicacion']
         fields = ['texto']
 
+        widgets = {
+            'texto': forms.Textarea(
+                attrs={'class': 'textinput form-control input-sm texto_comentar', 'placeholder': 'Deja tu comentario', 'required': 'true'}),
+        }
+
 
 class PerfilBusquedaAvanzadaForm(forms.ModelForm):
 

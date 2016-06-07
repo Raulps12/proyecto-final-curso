@@ -9,7 +9,6 @@ from django.contrib.auth.models import User
 from django.template.response import TemplateResponse
 from datetime import datetime, date, timedelta
 
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.core.urlresolvers import reverse
 
 from proyecto_final.aficionado.models import Perfil
@@ -22,16 +21,10 @@ from django.db.models import Q
 
 
 @login_required
-# def muro(request, perfil_pk):
-def muro(request):
+def muro(request, template='muro.html', page_template='muro_page.html'):
 
     publicaciones_filtro = Publicacion.objects.filter(
         autor=request.user).order_by('-fecha_hora')
-
-    # paginator = Paginator(publicaciones_filtro, settings.PAGINATION_PAGES)
-    # page_default = 1
-
-    # perfil = get_object_or_404(Perfil, pk=perfil_pk)
 
     # Aquí comprobamos si el usuario ya ha completado el formulario de registro
     if request.user.first_name == '':
@@ -39,23 +32,15 @@ def muro(request):
     # Final de comprobación
 
     else:
-        """
-        page = request.GET.get('page', page_default)
-        try:
-            publicaciones = paginator.page(page)
-        except PageNotAnInteger:
-            publicaciones = paginator.page(page_default)
-        except EmptyPage:
-            publicaciones = paginator.page(paginator.num_pages)
-        """
-        # context2 = {'publicaciones': publicaciones, 'perfil': perfil}
-        # context2 = {'publicaciones': publicaciones, }
-        context2 = {'publicaciones': publicaciones_filtro, }
-        return render(request, 'muro.html', context2)
+        context = {'publicaciones': publicaciones_filtro,
+                   'page_template': page_template, }
+        if request.is_ajax():
+            template = page_template
+        return render(request, template, context)
 
 
 @login_required
-def visita_muro(request, usuario_pk):
+def visita_muro(request, usuario_pk, template='visita_muro.html', page_template='visita_muro_page.html'):
     usuario = User.objects.get(pk=usuario_pk)
 
     publicaciones_filtro = Publicacion.objects.filter(
@@ -64,8 +49,11 @@ def visita_muro(request, usuario_pk):
     comentario_form = ComentarioForm()
 
     context = {'usuario': usuario, 'publicaciones': publicaciones_filtro,
-               'comentario_form': comentario_form}
-    return render(request, 'visita_muro.html', context)
+               'comentario_form': comentario_form,
+               'page_template': page_template, }
+    if request.is_ajax():
+            template = page_template
+    return render(request, template, context)
 
 
 """
