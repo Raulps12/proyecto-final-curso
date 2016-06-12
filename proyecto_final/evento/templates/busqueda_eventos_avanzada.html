@@ -1,78 +1,74 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% load i18n %}
+{% load i18n %} 	#Esto es para la internacionalización
 {% load bootstrap3 %}
 
 {% block head_added %}
-    {{ evento_form.media }}
+    <link href="{% static "css/registro_perfil.css" %}" rel="stylesheet">
+    {{ busqueda_form.media }}
 {% endblock %}
 
 {% block content %}
 
-<main class="container" id="login">
-  <div class="class_registro" id="div_registro">
-			<form action="." method="post" class="evento_form" role="form" enctype="multipart/form-data">
-			{% csrf_token %}
+				<form action="." method="GET" class="user_form" role="form">
+				{% csrf_token %}
+
+				{% if busqueda_form.errors %}
+                {% for error in busqueda_form.non_field_errors %}
+	            <div class="alert alert-error" id="alert-error">
+	                <strong>&bull; {{ error|escape }}</strong>
+	            </div>
+	            {% endfor %}
+	            {% endif %}
 
 				<div class="div_deportes">
-					<label class="titulo">Selecciona el o los deporte/s de tu evento</label>
+					<label class="titulo">Selecciona los deportes de tu búsqueda</label>
 					<hr class="hr_deportes">
 					<div data-toggle="buttons"> 
-					{% for checkbox in evento_form.deportes %}
+					{% for checkbox in busqueda_form.deportes %}
 	    				<label class="btn btn2-primary" style="position: relative;">
 	    				{{ checkbox.tag }} {{ checkbox.choice_label }}
 	    				</label>
 					{% endfor %}
 					</div>
 				</div>
-			
-			<p>Título</p>
-			{{ evento_form.titulo }}
-			<p>Imagen</p>
-			{{ evento_form.imagen }}
-			<p>Fecha y hora</p>
-			{{ evento_form.fecha_hora }}
-			<p>Descripción</p>
-			{{ evento_form.descripcion }}
-			<p>Precio</p>
-			{{ evento_form.precio }}
-			<p>Nº máximo de participantes</p>
-			{{ evento_form.max_participantes }}
-			<label class="titulo">País</label>
+				{% for error in busqueda_form.pais.errors %}
+	            	<div class="alert alert-error" id="alert-error"> <strong>&bull; {{ error|escape }}</strong>
+	            	</div>
+	            {% endfor %}
+				<label class="titulo">País</label>
             	<div id="div_id_country" class="form-group">
 	                <div class="controls ">
 	                    <div class="input-group">
 	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-flag"></i>
 	                        </div>
-	                        {{ evento_form.pais }}
+	                        {{ busqueda_form.pais }}
 	                    </div>
 	                </div>
             	</div>
-
+				{% for error in busqueda_form.ciudad.errors %}
+	            	<div class="alert alert-error" id="alert-error"> <strong>&bull; {{ error|escape }}</strong>
+	            	</div>
+	            {% endfor %}
 				<label class="titulo" id="label_ciudad">Ciudad o localidad</label>
             	<div id="div_id_city" class="form-group">
 	                <div class="controls ">
 	                    <div class="input-group">
 	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-flag"></i>
 	                        </div>
-	                        {{ evento_form.ciudad }}
+	                        {{ busqueda_form.ciudad }}
 	                    </div>
 	                </div>
-            	</div><br>
-			<p>Dirección</p>
-			{{ evento_form.direccion }}
-			<p>Localización</p>
-			{{ evento_form.localizacion }}
+            	</div>
 
+            	{% buttons %}
+		        	<button class="btn" id="completar" type="submit">Buscar
+		        	</button>
+		    	{% endbuttons %}
 
-			{% buttons %}
-		        <button class="btn" id="completar" type="submit">Crear Evento</button>
-		    {% endbuttons %}
+            </form>
 
-			</form>
-	</div>
-</main>
 
     <script>
     	$("input[name='deportes']" ).on('change', function(){
@@ -85,7 +81,6 @@
     		}
     	});
     </script>
-
     <script>
     	$("select[name='pais']" ).on('change', function(){
     		document.getElementById('label_ciudad').style.display = "initial";
@@ -93,5 +88,4 @@
     		//$("select[name='ciudad']" ).style.display = initial;
     	});
     </script>
-
 {% endblock %}

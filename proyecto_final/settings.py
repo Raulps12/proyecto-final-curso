@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     # Apps para Django-embed-video
     'embed_video',
     # Apps para Django-debug-toolbar
-    'debug_toolbar',
+    # 'debug_toolbar',
     # Django EL(Endless) Pagination
     'el_pagination',
     # Django location field
@@ -218,8 +218,10 @@ AVATAR_GRAVATAR_DEFAULT = 'http://icons.iconarchive.com/icons/graphicloads/100-f
 
 LOCATION_FIELD_PATH = STATIC_URL + 'location_field'
 
+
 LOCATION_FIELD = {
     'map.provider': 'google',
+    # 'map.provider': 'openstreetmap',
     'map.zoom': 13,
 
     'search.provider': 'google',

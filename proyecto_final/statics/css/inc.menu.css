@@ -101,10 +101,14 @@
   text-decoration: none;
   font-weight: bold;
 }
-
-@media (max-width: 350px) {
-  .miniatura_usuario{
-    visibility: hidden;
+@media (min-width: 320px) {
+  .logout {
+    width: 32px;
+  }
+}
+@media (min-width: 400px) {
+  .logout {
+    width: 32px;
   }
 }
 @media (min-width: 600px) {

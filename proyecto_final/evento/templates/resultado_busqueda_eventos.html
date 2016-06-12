@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load avatar_tags %}
+{% load bootstrap3 %}
+
+{% block head_added %}
+<link href="{% static "css/resultado_busqueda.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="fondo">
+
+	<h2><i class="fa fa-search"></i> Resultados de tu búsqueda...</h2>
+
+	{% if eventos %}
+		{% for evento in eventos %}
+			{% if evento.autor.username != user.username %}
+				<hr class="hr">
+				<div class="div_resultado_busqueda">
+				<img src="{{ evento.imagen.url }}" class="img-circle img_usuario">
+
+				<a href="{% url 'ver_evento' evento.pk %}">{{ evento.titulo }}</a>
+
+				      {% for deporte in eventos.deportes.all %}
+
+					      <span class="deportes">{{ deporte }}</span>
+
+					  {% endfor %}
+				</div>
+			{% endif %}
+		{% endfor %}
+		<hr class="hr">
+	{% endif %}
+
+	{% if not eventos %}
+		No se han encontrado resultados para tu búsqueda.
+				Comprueba que el término de búsqueda no contiene errores o busca otro término.
+	{% endif %}
+
+</div>
+{% endblock %}

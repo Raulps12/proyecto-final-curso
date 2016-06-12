@@ -10,11 +10,64 @@
 <link href="{% static "css/muro.css" %}" rel="stylesheet">
 <link href="{% static "css/long_shadow.css" %}" rel="stylesheet">
 <link href="{% static "css/icono_buscar.css" %}" rel="stylesheet">
+<link href="{% static "css/agenda_eventos.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% url 'muro' argument %}
 
 {% block content %}
+
+<div class="div_agenda">
+  <p class="eventos">Eventos</p>
+  <div class="mi_agenda">
+
+    {% for evento in eventos %}
+
+    <div class="mitad_arriba">
+      <span class="span1">{{ evento.fecha_hora|date:"j" }}</span>
+    </div>
+    <div class="mitad_abajo">
+      <span class="span2">{{ evento.fecha_hora|date:"M" }}</span>
+    </div>
+    <div class="datos_evento">
+      <span class="span3">{{ evento.titulo }}</span><br>
+      {{ evento.ciudad }}, {{ evento.pais }}
+    </div>
+    <div class="ver_evento">
+       <a href="{% url "ver_evento" evento.id %}"><i class="fa fa-chevron-right"></i></a>
+    </div>
+    <div class="opciones_evento">
+       <a href="{% url 'editar_evento' evento.id %}" title="Editar"><i class="fa fa-pencil"></i></a>
+      <a  class="borrar_evento" data-toggle="modal" data-target="#modal_borrar_evento" data-id-publi="{{ evento.id }}" title="Borrar" href="#?"><i class="fa  fa-close"></i></a>
+    </div>
+
+    <hr class="hr_agenda2">
+
+        <!-- Modal -->
+    <div class="modal fade" id="modal_borrar_evento" tabindex="-1" role="dialog" aria-labelledby="modal_borrar_eventoLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="modal_borrar_eventoLabel">{% trans "Are you sure that you want to delete this news?" %}</h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+            <button id="borrarEventoSubmit" type="button" class="btn btn-primary">{% trans "Delete" %}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+
+    <!--<hr class="hr_agenda1">-->
+
+    <a href="{% url "crear_evento" %} "><button class="btn" id="crear_evento" type="submit">Crear Evento</button></a>
+    <a href="{% url "busqueda_avanzada_eventos" %}" title="Buscar Evento" class="buscar_evento"><i class="fa fa-search "></i></a>
+
+  </div>
+</div>
 
 <div class="muro">
 
@@ -65,7 +118,7 @@
 
   </div>
 
-  <a href="{% url "crear_publicacion" %} "><button class="btn" id="crear_publi" type="submit">Crear Publicación</button></a>
+  <a href="{% url "crear_publicacion" %}"><button class="btn" id="crear_publi" type="submit">Crear Publicación</button></a>
 
   {% include page_template %}
   <img src="{% static "img/cargando.gif" %}" class="cargando" id="cargando">
@@ -79,7 +132,7 @@
 
 {% block extra_js %}
 
-<!-- Esto es para la ventana modal de desea borrar -->
+<!-- Esto es para la ventana modal de desea borrar publicación-->
 <script type="text/javascript">
   (function($){   //El jQuery se puede sustituir por $
     $(document).ready(function () {
@@ -102,6 +155,40 @@
     var id = button.data('id-publi');
     $("#borrarPublicacionSubmit").click(function(){
       $.ajax("/eliminar_publicacion/" + id + "/",
+        {method: 'post',
+        data: {csrfmiddlewaretoken: "{{ csrf_token }}"},
+           //data: {csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()},
+           success: function(){
+            window.location.href = "{% url "muro" %}";
+          }}); 
+    });
+  })
+
+</script>
+
+<!-- Esto es para la ventana modal de desea borrar evento-->
+<script type="text/javascript">
+  (function($){   //El jQuery se puede sustituir por $
+    $(document).ready(function () {
+      $("#borrarEventoSubmit").click(function(){
+        $.ajax("",
+          {method: 'post',
+          data: {csrfmiddlewaretoken: "{{ csrf_token }}"},
+           //data: {csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()},
+           success: function(){
+            window.location.href = "{% url "muro" %}";
+          }}); 
+      });
+    });
+  })(jQuery);
+</script>
+
+<script type="text/javascript">
+  $('#modal_borrar_evento').on('show.bs.modal', function(event){
+    var button = $(event.relatedTarget);
+    var id = button.data('id-evento');
+    $("#borrarEventoSubmit").click(function(){
+      $.ajax("/eliminar_evento/" + id + "/",
         {method: 'post',
         data: {csrfmiddlewaretoken: "{{ csrf_token }}"},
            //data: {csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()},

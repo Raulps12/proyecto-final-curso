@@ -12,6 +12,7 @@ from datetime import datetime, date, timedelta
 from django.core.urlresolvers import reverse
 
 from proyecto_final.aficionado.models import Perfil
+from proyecto_final.evento.models import Evento
 from proyecto_final.aficionado.forms import UserForm, PerfilForm
 from .models import Publicacion, Comentario
 from .forms import PublicacionForm, PerfilBusquedaAvanzadaForm, ComentarioForm
@@ -26,13 +27,16 @@ def muro(request, template='muro.html', page_template='muro_page.html'):
     publicaciones_filtro = Publicacion.objects.filter(
         autor=request.user).order_by('-fecha_hora')
 
+    eventos_filtro = Evento.objects.filter(
+        autor=request.user).order_by('fecha_hora')
+
     # Aquí comprobamos si el usuario ya ha completado el formulario de registro
     if request.user.first_name == '':
         return redirect(reverse('registro_perfil'))
     # Final de comprobación
 
     else:
-        context = {'publicaciones': publicaciones_filtro,
+        context = {'publicaciones': publicaciones_filtro, 'eventos': eventos_filtro,
                    'page_template': page_template, }
         if request.is_ajax():
             template = page_template
@@ -52,7 +56,7 @@ def visita_muro(request, usuario_pk, template='visita_muro.html', page_template=
                'comentario_form': comentario_form,
                'page_template': page_template, }
     if request.is_ajax():
-            template = page_template
+        template = page_template
     return render(request, template, context)
 
 
@@ -130,7 +134,7 @@ def eliminar_publicacion(request, publicacion_pk):
 
     publicacion.delete()
 
-    return redirect(muro)
+    return redirect(reverse('muro'))
 
 
 @login_required

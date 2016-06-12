@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block head_added %}
+    {{ evento_form.media }}
+{% endblock %}
+
+{% block content %}
+
+<main class="container" id="login">
+  <div class="class_registro" id="div_registro">
+			<form action="." method="post" class="evento_form" role="form" enctype="multipart/form-data">
+			{% csrf_token %}
+			
+			{{ evento_form.as_p }}
+
+			{% buttons %}
+		        <button class="btn" id="completar" type="submit">Editar Evento</button>
+		    {% endbuttons %}
+
+			</form>
+	</div>
+</main>
+
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load avatar_tags %}
+{% load i18n %} 	#Esto es para la internacionalización
+{% load bootstrap3 %}
+
+{% block content %}
+
+	{{ evento.autor.username }}<br>
+	{{ evento.titulo }}<br>
+	<img src="{{ evento.imagen.url }}" alt="" class=""><br>
+	{{ evento.fecha_hora }}<br>
+	{{ evento.descripcion }}<br>
+	{{ evento.precio }}<br>
+	{{ evento.max_participantes }}<br>
+	{{ evento.pais }}<br>
+	{{ evento.ciudad }}<br>
+	{{ evento.direccion }}<br>
+	{{ evento.localizacion }}<br>
+
+	{% for deporte in evento.deportes.all %}
+      <span class="deportes">{{ deporte }}</span>
+  	{% endfor %}
+
+  	<div id="googleMap" style="width:500px;height:380px;"></div>
+
+ <script src="http://maps.googleapis.com/maps/api/js"> </script>
+
+<script>
+var myCenter=new google.maps.LatLng({{ evento.localizacion }});
+
+function initialize()
+{
+var mapProp = {
+  center:myCenter,
+  zoom:15,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+
+var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+var marker=new google.maps.Marker({
+  position:myCenter,
+  });
+
+marker.setMap(map);
+
+var infowindow = new google.maps.InfoWindow({
+  content:"{{ evento.titulo }}"
+  });
+
+infowindow.open(map,marker);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+
+{% endblock %}

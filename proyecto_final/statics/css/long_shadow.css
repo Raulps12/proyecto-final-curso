@@ -1,3 +1,36 @@
+@media (min-width: 320px) {
+	.md-long-shadow > h2 {
+  		color: #fff;
+ 		 text-shadow: 0px 0px #37b4af, 1px 1px #37b4af, 2px 2px #37b4af, 3px 3px #37b4af, 4px 4px #37b4af, 5px 5px #37b4af, 6px 6px #37b4af, 7px 7px #37b4af, 8px 8px #37b4af, 9px 9px #37b4af, 10px 10px #37b4af, 11px 11px #37b4af, 12px 12px #37b4af, 13px 13px #37b4af, 14px 14px #37b4af, 15px 15px #37b4af, 16px 16px #37b4af, 17px 17px #37b4af;
+	}
+}
+@media (min-width: 360px) {
+	.md-long-shadow > h2 {
+  		color: #fff;
+ 		 text-shadow: 0px 0px #37b4af, 1px 1px #37b4af, 2px 2px #37b4af, 3px 3px #37b4af, 4px 4px #37b4af, 5px 5px #37b4af, 6px 6px #37b4af, 7px 7px #37b4af, 8px 8px #37b4af, 9px 9px #37b4af, 10px 10px #37b4af, 11px 11px #37b4af, 12px 12px #37b4af, 13px 13px #37b4af, 14px 14px #37b4af, 15px 15px #37b4af, 16px 16px #37b4af, 17px 17px #37b4af, 18px 18px #37b4af, 19px 19px #37b4af, 20px 20px #37b4af, 21px 21px #37b4af, 22px 22px #37b4af, 23px 23px #37b4af, 24px 24px #37b4af, 25px 25px #37b4af;
+	}
+}
+@media (min-width: 400px) {
+	.md-long-shadow > h2 {
+  		color: #fff;
+ 		 text-shadow: 0px 0px #37b4af, 1px 1px #37b4af, 2px 2px #37b4af, 3px 3px #37b4af, 4px 4px #37b4af, 5px 5px #37b4af, 6px 6px #37b4af, 7px 7px #37b4af, 8px 8px #37b4af, 9px 9px #37b4af, 10px 10px #37b4af, 11px 11px #37b4af, 12px 12px #37b4af, 13px 13px #37b4af, 14px 14px #37b4af, 15px 15px #37b4af, 16px 16px #37b4af, 17px 17px #37b4af, 18px 18px #37b4af, 19px 19px #37b4af, 20px 20px #37b4af, 21px 21px #37b4af, 22px 22px #37b4af, 23px 23px #37b4af, 24px 24px #37b4af, 25px 25px #37b4af, 26px 26px #37b4af, 27px 27px #37b4af, 28px 28px #37b4af, 29px 29px #37b4af;
+	}
+}
+
+@media (min-width: 600px) {
+	.md-long-shadow > h2 {
+  		color: #fff;
+ 		 text-shadow: 0px 0px #37b4af, 1px 1px #37b4af, 2px 2px #37b4af, 3px 3px #37b4af, 4px 4px #37b4af, 5px 5px #37b4af, 6px 6px #37b4af, 7px 7px #37b4af, 8px 8px #37b4af, 9px 9px #37b4af, 10px 10px #37b4af, 11px 11px #37b4af, 12px 12px #37b4af, 13px 13px #37b4af, 14px 14px #37b4af, 15px 15px #37b4af, 16px 16px #37b4af, 17px 17px #37b4af, 18px 18px #37b4af, 19px 19px #37b4af, 20px 20px #37b4af, 21px 21px #37b4af, 22px 22px #37b4af, 23px 23px #37b4af, 24px 24px #37b4af, 25px 25px #37b4af, 26px 26px #37b4af, 27px 27px #37b4af, 28px 28px #37b4af, 29px 29px #37b4af;
+	}
+}
+
+@media (min-width: 768px) {
+	.md-long-shadow > h2 {
+  		color: #fff;
+ 		 text-shadow: 0px 0px #37b4af, 1px 1px #37b4af, 2px 2px #37b4af, 3px 3px #37b4af, 4px 4px #37b4af, 5px 5px #37b4af, 6px 6px #37b4af, 7px 7px #37b4af, 8px 8px #37b4af, 9px 9px #37b4af, 10px 10px #37b4af, 11px 11px #37b4af, 12px 12px #37b4af, 13px 13px #37b4af, 14px 14px #37b4af, 15px 15px #37b4af, 16px 16px #37b4af, 17px 17px #37b4af, 18px 18px #37b4af, 19px 19px #37b4af, 20px 20px #37b4af, 21px 21px #37b4af, 22px 22px #37b4af, 23px 23px #37b4af, 24px 24px #37b4af, 25px 25px #37b4af, 26px 26px #37b4af, 27px 27px #37b4af, 28px 28px #37b4af, 29px 29px #37b4af;
+	}
+}
+
 @media (min-width: 992px) {
 	.md-long-shadow > h2 {
   color: #fff;
