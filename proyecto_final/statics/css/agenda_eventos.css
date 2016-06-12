@@ -134,13 +134,13 @@
 	.div_agenda{
 		display: inherit;
 		margin-top: 35px;
-		margin-left: 0px;
+		margin-left: 740px;
 	}
 }
 @media (min-width: 1200px) {
 	.div_agenda{
 		display: inherit;
 		margin-top: 45px;
-		margin-left: 0px;
+		margin-left: 940px;
 	}
 }

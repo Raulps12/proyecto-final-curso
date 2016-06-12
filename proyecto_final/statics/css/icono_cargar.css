@@ -1,0 +1,14 @@
+.cargando{
+	width: 30px;
+	margin-left: 47%;
+	margin-top: -10px;
+	margin-bottom: 30px;
+}
+@media (min-width: 600px) {
+	.cargando{
+		width: 40px;
+		margin-left: 47%;
+		margin-top: -10px;
+		margin-bottom: 30px;
+	}
+}
