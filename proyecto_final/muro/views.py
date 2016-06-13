@@ -27,8 +27,7 @@ def muro(request, template='muro.html', page_template='muro_page.html'):
     publicaciones_filtro = Publicacion.objects.filter(
         autor=request.user).order_by('-fecha_hora')
 
-    eventos_filtro = Evento.objects.filter(
-        autor=request.user).order_by('fecha_hora')
+    eventos_filtro = Evento.objects.filter(Q(autor=request.user) | Q(participantes=request.user)).distinct().order_by('fecha_hora')
 
     # Aquí comprobamos si el usuario ya ha completado el formulario de registro
     if request.user.first_name == '':
@@ -50,9 +49,12 @@ def visita_muro(request, usuario_pk, template='visita_muro.html', page_template=
     publicaciones_filtro = Publicacion.objects.filter(
         autor=usuario.id).order_by('-fecha_hora')
 
+    eventos_filtro = Evento.objects.filter(
+        autor=usuario.id).order_by('fecha_hora')
+
     comentario_form = ComentarioForm()
 
-    context = {'usuario': usuario, 'publicaciones': publicaciones_filtro,
+    context = {'usuario': usuario, 'publicaciones': publicaciones_filtro, 'eventos': eventos_filtro,
                'comentario_form': comentario_form,
                'page_template': page_template, }
     if request.is_ajax():

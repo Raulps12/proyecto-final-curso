@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from django.conf.urls import patterns, include
 from macrosurl import url
-from .views import crear_evento, editar_evento, eliminar_evento, ver_evento, busqueda_avanzada_eventos
+from .views import crear_evento, editar_evento, eliminar_evento, ver_evento, busqueda_avanzada_eventos, evento_apuntarse, evento_desapuntarse
 
 urlpatterns = patterns('proyecto_final.evento.views',
                        # url(r'expresion regular', 'nombre de la función', name='nombre de la url' )
@@ -11,5 +11,7 @@ urlpatterns = patterns('proyecto_final.evento.views',
                        url(r'^editar_evento/:evento_pk/$', view=editar_evento, name='editar_evento'),
                        url(r'^eliminar_evento/:evento_pk/$', view=eliminar_evento, name='eliminar_evento'),
                        url(r'^ver_evento/:evento_pk/$', view=ver_evento, name='ver_evento'),
+                       url(r'^evento_apuntarse/:evento_pk/$', view=evento_apuntarse, name='evento_apuntarse'),
+                       url(r'^evento_desapuntarse/:evento_pk/$', view=evento_desapuntarse, name='evento_desapuntarse'),
                        url(r'^busqueda_avanzada_eventos/$', view=busqueda_avanzada_eventos, name='busqueda_avanzada_eventos'),
                        )

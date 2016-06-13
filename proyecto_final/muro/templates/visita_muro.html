@@ -11,6 +11,7 @@
 <link href="{% static "css/long_shadow.css" %}" rel="stylesheet">
 <link href="{% static "css/icono_buscar.css" %}" rel="stylesheet">
 <link href="{% static "css/icono_cargar.css" %}" rel="stylesheet">
+<link href="{% static "css/agenda_eventos_visita.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% url 'muro' argument %}
@@ -19,10 +20,41 @@
 
 <div class="muro">
 
+<div class="div_agenda">
+  <p class="eventos">Eventos</p>
+  <div class="mi_agenda">
+
+    {% for evento in eventos %}
+
+    <div class="mitad_arriba">
+      <span class="span1">{{ evento.fecha_hora|date:"j" }}</span>
+    </div>
+    <div class="mitad_abajo">
+      <span class="span2">{{ evento.fecha_hora|date:"M" }}</span>
+    </div>
+    <div class="datos_evento">
+      <span class="span3">{{ evento.titulo }}</span><br>
+      {{ evento.ciudad }}, {{ evento.pais }}<br>
+
+      {% for deporte in evento.deportes.all %}
+        {{ deporte }}
+      {% endfor %}
+    </div>
+    <div class="ver_evento">
+       <a href="{% url "ver_evento" evento.id %}"><i class="fa fa-chevron-right"></i></a>
+    </div>
+
+    <hr class="hr_agenda3">
+
+    {% endfor %}
+
+  </div>
+</div>
+
   <div class="buscar">
     {% csrf_token %}
     <form action="{% url 'busqueda' %}" method="get" id="content">
-      <input type="text" name="s" class="input">
+      <input type="text" name="s" class="input"  required="True">
       <button type="reset" class="search"></button>
     </form>
 
@@ -68,6 +100,10 @@
   <a href="#" class="back-to-top"><div class="subir"><i class="fa fa-chevron-up"></i></div></a>
 
 </div>
+
+{% endblock %}
+
+{% block extra_js %}
 
 <!-- Esto es para la ventana modal de desea borrar -->
 <script type="text/javascript">

@@ -32,7 +32,7 @@ class Evento(models.Model):
     deportes = models.ManyToManyField(
         Deporte, related_name="deportes", verbose_name=u'Deportes')
 
-    # participantes = models.ManyToManyField(User, related_name="participantes", verbose_name=u'Participantes')
+    participantes = models.ManyToManyField(User, related_name="participantes", verbose_name=u'Participantes')
 
     class Meta:
         verbose_name = _('evento')

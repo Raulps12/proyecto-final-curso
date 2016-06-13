@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load avatar_tags %}
-{% load i18n %} 	#Esto es para la internacionalización
+{% load i18n %}
 {% load bootstrap3 %}
 
 {% block content %}
@@ -24,7 +24,21 @@
 
   	<div id="googleMap" style="width:500px;height:380px;"></div>
 
- <script src="http://maps.googleapis.com/maps/api/js"> </script>
+  	{% if evento.autor != user %}
+		
+		{% if user in evento.participantes.all %}
+
+			<a href="{% url "evento_desapuntarse" evento.id %}">No podré asistir <i class="fa fa-thumbs-o-down"></i></a>
+
+		{% else %}
+		
+			<a href="{% url "evento_apuntarse" evento.id %}">¡Me apunto! <i class="fa fa-thumbs-o-up"></i></a><br>
+
+		{% endif %}
+
+	{% endif %}
+
+<script src="http://maps.googleapis.com/maps/api/js"> </script>
 
 <script>
 var myCenter=new google.maps.LatLng({{ evento.localizacion }});

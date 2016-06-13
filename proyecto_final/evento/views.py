@@ -81,3 +81,25 @@ def busqueda_avanzada_eventos(request):
 
     context.update({'busqueda_form': busqueda_form})
     return render(request, 'busqueda_eventos_avanzada.html', context)
+
+
+@login_required
+def evento_apuntarse(request, evento_pk):
+    evento = Evento.objects.get(pk=evento_pk)
+
+    evento.participantes.add(request.user)
+
+    evento.save()
+
+    return redirect(reverse('ver_evento', kwargs={'evento_pk': evento_pk}))
+
+
+@login_required
+def evento_desapuntarse(request, evento_pk):
+    evento = Evento.objects.get(pk=evento_pk)
+
+    evento.participantes.remove(request.user)
+
+    evento.save()
+
+    return redirect(reverse('ver_evento', kwargs={'evento_pk': evento_pk}))
