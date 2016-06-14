@@ -30,9 +30,7 @@ def editar_evento(request, evento_pk):
     evento_item = get_object_or_404(Evento, pk=evento_pk)
     evento_form = EventoEditarForm(instance=evento_item)
     if request.method == 'POST':
-        data = request.POST
-        evento_form = EventoEditarForm(
-            data=data, instance=evento_item)
+        evento_form = EventoEditarForm(request.POST, request.FILES, instance=evento_item)
         if evento_form.is_valid():
             evento = evento_form.save(commit=False)
             evento.autor = request.user

@@ -42,6 +42,19 @@ body {
 #alert-error {
   color: #fc8608;
 }
+p {
+  color: #898989;
+}
+a {
+  color: #37b4af;
+  font-weight: bold;
+}
+a:hover {
+  color: #37b4af;
+  -webkit-filter: brightness(85%);
+  text-decoration: none;
+}
+
 /* Dispositivos pequeños (tablets, anchura mayor o igual a 768px) */
 @media (min-width: 600px) {
   .container .class_signup {

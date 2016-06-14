@@ -55,7 +55,7 @@
     {% csrf_token %}
     <form action="{% url 'busqueda' %}" method="get" id="content">
       <input type="text" name="s" class="input"  required="True">
-      <button type="reset" class="search"></button>
+      <button id="buscar" type="reset" class="search"></button>
     </form>
 
     <a href="{% url 'busqueda_avanzada' %}"><button class="btn" id="busqueda_a" type="submit">Búsqueda Avanzada</button></a>
@@ -105,29 +105,32 @@
 
 {% block extra_js %}
 
-<!-- Esto es para la ventana modal de desea borrar -->
-<script type="text/javascript">
-  (function($){   //El jQuery se puede sustituir por $
-    $(document).ready(function () {
-      $("#borrarPublicacionSubmit").click(function(){
-        $.ajax("",
-          {method: 'post',
-          data: {csrfmiddlewaretoken: "{{ csrf_token }}"},
-           //data: {csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()},
-           success: function(){
-            window.location.href = "{% url "muro" %}";
-          }}); 
-      });
-    });
-  })(jQuery);
-</script>
-
+<!-- Esto es para borrar publicaciones -->
 <script type="text/javascript">
   $('#modal_borrar_publi').on('show.bs.modal', function(event){
     var button = $(event.relatedTarget);
     var id = button.data('id-publi');
     $("#borrarPublicacionSubmit").click(function(){
       $.ajax("/eliminar_publicacion/" + id + "/",
+        {method: 'post',
+        data: {csrfmiddlewaretoken: "{{ csrf_token }}"},
+           //data: {csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()},
+           success: function(){
+            window.location.href = "{% url "muro" %}";
+          }}); 
+    });
+  })
+
+</script>
+
+<!-- Esto es para borrar eventos -->
+<script type="text/javascript">
+  $('#modal_borrar_evento').on('show.bs.modal', function(event){
+    var button = $(event.relatedTarget);
+    var id = button.data('id-evento');
+    $("#borrarEventoSubmit").click(function(eventito){
+      eventito.preventDefault();
+      $.ajax("/eliminar_evento/" + id + "/",
         {method: 'post',
         data: {csrfmiddlewaretoken: "{{ csrf_token }}"},
            //data: {csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()},
@@ -150,7 +153,7 @@
       $('.input').blur();
     }
   }
-  $('button').on('click', expand);
+  $('#buscar').on('click', expand);
 </script>
 
 <!-- Esto es para subir -->
@@ -177,24 +180,35 @@
 <!-- Div comentarios -->
 <script language="javascript">
   // Lo ponemos de esta manera que es el modo live, para que no haya problemas con la carga de Ajax
-  $(document).on('click', '.enlace_mostrar_ocultar', mostrar_comentarios);
+  $(document).on('click', '.enlace_mostrar', mostrar_comentarios);
 
   function mostrar_comentarios(evento) {
     evento.preventDefault();
-    $enlace_mostrar_ocultar = $(evento.target);
-    $div_comentarios  = $enlace_mostrar_ocultar.next()
+    $enlace_mostrar = $(evento.target);
+    $enlace_ocultar = $enlace_mostrar.next();
+    $div_comentarios  = $enlace_mostrar.nextAll('div');
 
     //console.log($enlace_mostrar_ocultar);
     //console.log($div_comentarios);
-    if($div_comentarios.css('display') == "block") {
-      $div_comentarios.css('display', 'none');
-      $enlace_mostrar_ocultar.html("Mostrar comentarios({{ publicacion.comments.all.count }}) &#9660;");
-    }
-    else {
       $div_comentarios.css('display', 'block');
-      $enlace_mostrar_ocultar.html("Ocultar comentarios &#9650;");
-    }
-  } 
+      $enlace_mostrar.css('display', 'none');
+      $enlace_ocultar.css('display', 'inline');
+  }
+
+  $(document).on('click', '.enlace_ocultar', ocultar_comentarios);
+
+  function ocultar_comentarios(evento) {
+    evento.preventDefault();
+    $enlace_ocultar = $(evento.target);
+    $enlace_mostrar = $enlace_ocultar.prev();
+    $div_comentarios  = $enlace_ocultar.nextAll('div');
+
+    //console.log($enlace_mostrar_ocultar);
+    //console.log($div_comentarios);
+      $div_comentarios.css('display', 'none');
+      $enlace_mostrar.css('display', 'inline');
+      $enlace_ocultar.css('display', 'none');
+  }  
 </script>
 
 <!-- Scroll infinito -->

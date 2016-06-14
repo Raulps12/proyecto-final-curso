@@ -7,7 +7,7 @@ body {
 }
 .muro{
 	width: 100%;
-	min-height: 600px;
+	min-height: 604px;
 	margin-left: 0%;
 	margin-top: -50px;
 	margin-bottom: -30px;
@@ -196,18 +196,34 @@ hr{
 .borrar_publicacion{
 	margin-right: 7px;
 }
-.enlace_mostrar_ocultar{
+.enlace_mostrar{
 	color: #fc8608;
 	text-decoration: none;
 	margin-top: 14px;
 	float: left;
-
 }
-.enlace_mostrar_ocultar:hover{
+.enlace_mostrar:hover{
 	text-decoration: none;
-	color: #e27603;
+	color: #fc8608;
+	-webkit-filter: brightness(85%);
 }
-.enlace_mostrar_ocultar:focus{
+.enlace_mostrar:focus{
+	text-decoration: none;
+	color: #fc8608;
+}
+.enlace_ocultar{
+	color: #fc8608;
+	text-decoration: none;
+	margin-top: 14px;
+	float: left;
+	display: none;
+}
+.enlace_ocultar:hover{
+	text-decoration: none;
+	color: #fc8608;
+	-webkit-filter: brightness(85%);
+}
+.enlace_ocultar:focus{
 	text-decoration: none;
 	color: #fc8608;
 }
@@ -216,6 +232,7 @@ hr{
 	overflow-y: scroll;
 	width: 100%;
 	height: 200px;
+	display: none;
 }
 .div_comentarios::-webkit-scrollbar-track{
   border-radius: 10px;
@@ -247,6 +264,7 @@ hr{
 	overflow-y: scroll;
 	width: 100%;
 	height: 100px;
+	display: none;
 }
 .div_comentarios_small::-webkit-scrollbar-track{
   border-radius: 10px;

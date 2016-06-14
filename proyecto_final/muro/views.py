@@ -115,9 +115,7 @@ def editar_publicacion(request, publicacion_pk):
     publicacion_item = get_object_or_404(Publicacion, pk=publicacion_pk)
     publicacion_form = PublicacionForm(instance=publicacion_item)
     if request.method == 'POST':
-        data = request.POST
-        publicacion_form = PublicacionForm(
-            data=data, instance=publicacion_item)
+        publicacion_form = PublicacionForm(request.POST, request.FILES, instance=publicacion_item)
         if publicacion_form.is_valid():
             publicacion = publicacion_form.save(commit=False)
             publicacion.autor = request.user

@@ -79,7 +79,16 @@ p {
   color: #898989;
 }
 a {
-  color: #31a19d;
+  color: #37b4af;
+  font-weight: bold;
+}
+a:hover {
+  color: #37b4af;
+  -webkit-filter: brightness(85%);
+  text-decoration: none;
+}
+.alert{
+  color: #fc8608;
 }
 
 
