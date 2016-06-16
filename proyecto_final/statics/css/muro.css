@@ -7,7 +7,7 @@ body {
 }
 .muro{
 	width: 100%;
-	min-height: 604px;
+	min-height: 513px;
 	margin-left: 0%;
 	margin-top: -50px;
 	margin-bottom: -30px;
@@ -100,6 +100,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 
 #crear_publi:hover {
     -webkit-filter: brightness(85%);
+}
+.mostrar_ocultar_eventos{
+  color: #5fceca;
+  font-weight: bolder;
+  font-size: 16px;
+  margin-top: -40px;
+  margin-right: 8%;
+  margin-bottom: 0px;
+  float: right;
+  position: relative;
+}
+.mostrar_ocultar_eventos:hover{
+	text-decoration: none;
+	color: #5fceca;
+	-webkit-filter: brightness(85%);
+}
+.mostrar_ocultar_eventos:focus{
+	text-decoration: none;
+	color: #5fceca;
 }
 
 #busqueda_a {
@@ -214,6 +233,10 @@ hr{
 }
 .borrar_publicacion{
 	margin-right: 7px;
+}
+.opciones_evento > a:focus{
+	outline: none;
+	border: none;
 }
 .enlace_mostrar{
 	color: #fc8608;
@@ -351,6 +374,13 @@ hr{
 	  height: 25px;
 	  margin-right: 41%;
 	}
+	.div_eventos{
+		/*border: 1px solid green;*/
+		width: 85%;
+		margin-left: 7.5%;
+		margin-bottom: 20px;
+		display: none;
+	}
 	.cabecera_usuario{
 		width: 85%;
 		margin-left: 7.5%;
@@ -404,7 +434,7 @@ hr{
 		text-align: center;
 		width: 58%;
 		margin-left: 41%;
-		margin-top: 17px;
+		margin-top: 0px;
 	}
 	.cabecera_interior{
 		width: 80%;
@@ -415,7 +445,7 @@ hr{
 		padding-top: 15px;
 	}
 	.cabecera_deportes > img{
-		margin-top: -30px;
+		margin-top: 5px;
 		width: 25px;
 	}
 	#busqueda_a {
@@ -435,10 +465,16 @@ hr{
 		font-size: 20px;
 	}
 }
+.modal-header > h4{
+	text-align: center;
+	color: white;
+	font-weight: bolder;
+}
 @media (min-width: 360px) {
 	.muro{
 		width: 100%;
 		margin-left: 0%;
+		min-height: 585px;
 	}
 	#crear_publi {
 	  width: 150px;
@@ -497,7 +533,7 @@ hr{
 		text-align: center;
 		width: 60%;
 		margin-left: 39%;
-		margin-top: 17px;
+		margin-top: 0px;
 	}
 	.cabecera_interior{
 		width: 80%;
@@ -508,7 +544,7 @@ hr{
 		padding-top: 15px;
 	}
 	.cabecera_deportes > img{
-		margin-top: -25px;
+		margin-top: 5px;
 		width: 25px;
 	}
 	#busqueda_a {
@@ -532,6 +568,7 @@ hr{
 	.muro{
 		width: 100%;
 		margin-left: 0%;
+		min-height: 645px;
 	}
 	#crear_publi {
 	  width: 150px;
@@ -590,7 +627,7 @@ hr{
 		text-align: center;
 		width: 65%;
 		margin-left: 35%;
-		margin-top: 17px;
+		margin-top: 0px;
 	}
 	.cabecera_interior{
 		width: 80%;
@@ -601,7 +638,7 @@ hr{
 		padding-top: 15px;
 	}
 	.cabecera_deportes > img{
-		margin-top: -25px;
+		margin-top: 6px;
 		width: 25px;
 	}
 	#busqueda_a {
@@ -683,7 +720,7 @@ hr{
 		text-align: center;
 		width: 65%;
 		margin-left: 35%;
-		margin-top: 17px;
+		margin-top: 0px;
 	}
 	.cabecera_interior{
 		width: 85%;
@@ -694,7 +731,7 @@ hr{
 		padding-top: 15px;
 	}
 	.cabecera_deportes > img{
-		margin-top: -25px;
+		margin-top: 5px;
 		width: 25px;
 	}
 	#busqueda_a {
@@ -776,7 +813,7 @@ hr{
 		text-align: center;
 		width: 67%;
 		margin-left: 32%;
-		margin-top: 17px;
+		margin-top: 0px;
 	}
 	.cabecera_interior{
 		width: 85%;
@@ -787,7 +824,7 @@ hr{
 		padding-top: 15px;
 	}
 	.cabecera_deportes > img{
-		margin-top: -25px;
+		margin-top: 5px;
 		width: 27px;
 	}
 	#busqueda_a {
@@ -894,7 +931,7 @@ hr{
 		text-align: center;
 		width: 63%;
 		margin-left: 37%;
-		margin-top: 17px;
+		margin-top: 0px;
 	}
 	.cabecera_interior{
 		width: 85%;
@@ -905,7 +942,7 @@ hr{
 		padding-top: 15px;
 	}
 	.cabecera_deportes > img{
-		margin-top: -15px;
+		margin-top: 7px;
 		width: 35px;
 	}
 	#busqueda_a {
@@ -1012,7 +1049,7 @@ hr{
 		text-align: center;
 		width: 63%;
 		margin-left: 37%;
-		margin-top: 17px;
+		margin-top: 0px;
 	}
 	.cabecera_interior{
 		width: 80%;
@@ -1023,7 +1060,7 @@ hr{
 		padding-top: 15px;
 	}
 	.cabecera_deportes > img{
-		margin-top: -15px;
+		margin-top: 10px;
 		width: 35px;
 	}
 	#busqueda_a {
@@ -1039,6 +1076,12 @@ hr{
 		height: 40px;
 		padding-top: 2px;
 		font-size: 25px;
+	}
+	.mostrar_ocultar_eventos{
+		display: none;
+	}
+	.ocultar_eventos{
+		display: none;
 	}
 }
 /* Dispositivos grandes (ordenadores, anchura mayor o igual a 1200px) */
@@ -1118,7 +1161,7 @@ hr{
 		text-align: center;
 		width: 63%;
 		margin-left: 37%;
-		margin-top: 17px;
+		margin-top: 5px;
 	}
 	.cabecera_interior{
 		width: 83%;
@@ -1129,7 +1172,7 @@ hr{
 		padding-top: 15px;
 	}
 	.cabecera_deportes > img{
-		margin-top: -15px;
+		margin-top: 10px;
 		width: 35px;
 	}
 	#busqueda_a {
@@ -1145,5 +1188,24 @@ hr{
 		height: 40px;
 		padding-top: 2px;
 		font-size: 25px;
+	}
+}
+@media (min-width: 1311px) {
+	.muro{
+		width: 100%;
+		margin-left: 0%;
+		min-height: 604px;
+	}
+	.cabecera_descripcion{
+		/*border: 1px solid orange;*/
+		width: 63%;
+		margin-left: 35%;
+	}
+}
+@media (min-width: 1312px) {
+	.muro{
+		width: 100%;
+		margin-left: 0%;
+		min-height: 645px;
 	}
 }

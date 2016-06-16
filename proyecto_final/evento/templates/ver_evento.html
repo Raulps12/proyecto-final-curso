@@ -4,39 +4,72 @@
 {% load i18n %}
 {% load bootstrap3 %}
 
+{% block head_added %}
+	<link href="{% static "css/ver_evento.css" %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 
-	{{ evento.autor.username }}<br>
-	{{ evento.titulo }}<br>
-	<img src="{{ evento.imagen.url }}" alt="" class=""><br>
-	{{ evento.fecha_hora }}<br>
-	{{ evento.descripcion }}<br>
-	{{ evento.precio }}<br>
-	{{ evento.max_participantes }}<br>
-	{{ evento.pais }}<br>
-	{{ evento.ciudad }}<br>
-	{{ evento.direccion }}<br>
-	{{ evento.localizacion }}<br>
+<div class="div_crear_publicacion">
+  <div class="crear_publicacion">
 
-	{% for deporte in evento.deportes.all %}
-      <span class="deportes">{{ deporte }}</span>
-  	{% endfor %}
+  	<i class="fa fa-bookmark marcapaginas"></i>
 
-  	<div id="googleMap" style="width:500px;height:380px;"></div>
+  	<div class="contenido_marcapaginas">
+  		<!--<div class="texto_organizador">ORGANIZADOR</div>-->
+  		{% if evento.autor != user %}
+	  		<a href="{% url 'visita_muro' evento.autor.pk %}" class="enlace_usuario">
+		  		<img src="{% avatar_url evento.autor %}" class="img-circle">
+		  	</a>
+		  		<div class="nombre_organizador">{{ evento.autor.username }}</div>
+	  	{% else %}
+	  		<img src="{% avatar_url evento.autor %}" class="img-circle">
+		  	<div class="nombre_organizador">{{ evento.autor.username }}</div>
+		{% endif %}
+  	</div>
+	
+	<img src="{{ evento.imagen.url }}" class="img-thumbnail center-block imagen_evento">
+	<div class="titulo">
+		{% for deporte in evento.deportes.all %}
+     		 {{ evento.titulo }} <span class="deportes">{{ deporte }}</span>
+  		{% endfor %}
+	</div>
+	
+	<hr>
+	<div class="descripcion">{{ evento.descripcion }}</div>
+	<hr>
+	
+	<div id="googleMap" class="mapa"></div>
+
+	<div class="informacion">
+		<h2>Información</h2>
+		<p><i class="fa fa fa-clock-o"></i> {{ evento.fecha_hora }}</p>
+		<p><i class="fa fa-money"></i> Precio: {{ evento.precio }}€</p>
+		<p><i class="fa fa-group"></i> Nº max. participantes: {{ evento.max_participantes }}</p>
+		<p><i class="fa fa-flag"></i> {{ evento.ciudad }}, {{ evento.pais }}</p>
+		<p><i class="fa fa-map-marker"></i> {{ evento.direccion }}</p>
+	</div>
 
   	{% if evento.autor != user %}
 		
 		{% if user in evento.participantes.all %}
 
-			<a href="{% url "evento_desapuntarse" evento.id %}">No podré asistir <i class="fa fa-thumbs-o-down"></i></a>
+			<a href="{% url "evento_desapuntarse" evento.id %} "><button class="btn" id="desapuntarse" type="submit">No podré asistir <i class="fa fa-thumbs-o-down"></i></button></a>
 
 		{% else %}
-		
-			<a href="{% url "evento_apuntarse" evento.id %}">¡Me apunto! <i class="fa fa-thumbs-o-up"></i></a><br>
+
+			<a href="{% url "evento_apuntarse" evento.id %} "><button class="btn" id="apuntarse" type="submit">¡Me apunto! <i class="fa fa-thumbs-o-up"></i></button></a>
 
 		{% endif %}
 
 	{% endif %}
+
+	</div>
+	</div>
+
+{% endblock %}
+
+{% block extra_js %}
 
 <script src="http://maps.googleapis.com/maps/api/js"> </script>
 

@@ -20,12 +20,13 @@
 				<img src="{% avatar_url usuario %}" class="img-circle img_usuario">
 
 				<a href="{% url 'visita_muro' usuario.pk %}">{{ usuario.first_name }} {{ usuario.last_name }} ({{ usuario.username }})</a>
-
+					<div class="div_deportes">
 				      {% for deporte in usuario.profile.deportes.all %}
 
 					      <span class="deportes">{{ deporte }}</span>
 
 					  {% endfor %}
+					 </div>
 				</div>
 			{% endif %}
 		{% endfor %}
@@ -54,8 +55,9 @@
 	{% endif %}
 
 	{% if not usuarios and not perfiles %}
-		No se han encontrado resultados para tu búsqueda.
-				Comprueba que el término de búsqueda no contiene errores o busca otro término.
+		<div class="mensaje">
+		No se han encontrado resultados para tu búsqueda.<br>
+		Comprueba que el término de búsqueda no contiene errores o busca otro término.</div>
 	{% endif %}
 
 </div>

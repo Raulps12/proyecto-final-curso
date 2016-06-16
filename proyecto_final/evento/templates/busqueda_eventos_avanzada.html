@@ -1,15 +1,18 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% load i18n %} 	#Esto es para la internacionalización
+{% load i18n %}
 {% load bootstrap3 %}
 
 {% block head_added %}
-    <link href="{% static "css/registro_perfil.css" %}" rel="stylesheet">
+    <link href="{% static "css/busqueda_avanzada_eventos.css" %}" rel="stylesheet">
     {{ busqueda_form.media }}
 {% endblock %}
 
 {% block content %}
+<main class="container" id="login">
+	<div class="busqueda_avanzada_eventos">
+	<div class="class_registro" id="div_registro">
 
 				<form action="." method="GET" class="user_form" role="form">
 				{% csrf_token %}
@@ -23,7 +26,7 @@
 	            {% endif %}
 
 				<div class="div_deportes">
-					<label class="titulo">Selecciona los deportes de tu búsqueda</label>
+					<label class="titulo">Selecciona el o los deporte/s de tu búsqueda</label>
 					<hr class="hr_deportes">
 					<div data-toggle="buttons"> 
 					{% for checkbox in busqueda_form.deportes %}
@@ -63,12 +66,19 @@
             	</div>
 
             	{% buttons %}
-		        	<button class="btn" id="completar" type="submit">Buscar
+		        	<button class="btn" id="completar" type="submit">Buscar Evento/s
 		        	</button>
 		    	{% endbuttons %}
 
             </form>
 
+	</div>
+	</div>
+</main>
+
+{% endblock %}
+
+{% block extra_js %}
 
     <script>
     	$("input[name='deportes']" ).on('change', function(){
@@ -88,4 +98,5 @@
     		//$("select[name='ciudad']" ).style.display = initial;
     	});
     </script>
+
 {% endblock %}

@@ -5,6 +5,9 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+.container_logout{
+  min-height: 243px;
+}
 .class_logout {
   background-color: #fff;
   border: 8px solid #fc8608;
@@ -15,6 +18,7 @@ body {
   margin-left: 5%;
   width: 90%;
   box-shadow: 5px 5px 5px #afafaf, rgba(220,220,220,0.65) 3px 3px 13px 2px inset;
+  z-index: 1;
 }
 .class_logout h1 {
   text-align: center;
@@ -43,43 +47,61 @@ body {
 }
 
 @media (min-width: 350px) {
-  .container .class_logout {
+  .container_logout{
+    min-height: 315px;
+  }
+  .class_logout {
     width: 80%;
     margin-left: 10%;
   }
 }
 @media (min-width: 400px) {
-  .container .class_logout {
+  .container_logout{
+    min-height: 375px;
+  }
+  .class_logout {
     width: 80%;
     margin-left: 10%;
   }
 }
 @media (min-width: 500px) {
-  .container .class_logout {
+  .class_logout {
     width: 60%;
     margin-left: 20%;
   }
 }
 @media (min-width: 700px) {
-  .container .class_logout {
+  .class_logout {
     width: 50%;
     margin-left: 25%;
   }
 }
 @media (min-width: 800px) {
-  .container .class_logout {
+  .class_logout {
     width: 40%;
     margin-left: 30%;
   }
 }
 @media (min-width: 992px) {
-  .container .class_logout {
+  .class_logout {
     width: 30%;
     margin-left: 35%;
   }
 }
-@media (min-width: 1200px) {
-  .container .class_logout {
+@media (min-width: 1311px) {
+  .container_logout{
+    min-height: 334px;
+  }
+  .class_logout {
+    width: 30%;
+    margin-left: 35%;
+  }
+}
+@media (min-width: 1312px) {
+  .container_logout{
+    min-height: 375px;
+  }
+  .class_logout {
     width: 30%;
     margin-left: 35%;
   }

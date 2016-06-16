@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'datetimewidget',
     # Apps para Django-cities-light
     'cities_light',
-    # Apps para Django-autocomplete
+    # Apps para Django-autocomplete-light
     'dal',
     'dal_select2',
     # Apps para Django-avatar
@@ -207,7 +207,7 @@ BOOTSTRAP3 = {
 
 # Settings for django-cities-light
 CITIES_LIGHT_TRANSLATION_LANGUAGES = ['es']
-CITIES_LIGHT_INCLUDE_COUNTRIES = ['ES', 'GBR']
+CITIES_LIGHT_INCLUDE_COUNTRIES = ['ES', 'FR', 'UK']
 CITIES_LIGHT_INCLUDE_CITY_TYPES = [
     'PPL', 'PPLA', 'PPLA2', 'PPLA3', 'PPLA4', 'PPLC', 'PPLF', 'PPLG', 'PPLL', 'PPLR', 'PPLS', 'STLMT', ]
 

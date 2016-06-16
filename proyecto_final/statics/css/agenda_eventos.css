@@ -139,16 +139,56 @@
 	.div_agenda{
 		display: none;
 	}
+	.div_agenda_mostrar{
+		width: 200px;
+		margin-left: 20px;
+	}
+@media (min-width: 360px) {
+	.div_agenda_mostrar{
+		width: 200px;
+		margin-left: 40px;
+	}
+}
+@media (min-width: 400px) {
+	.div_agenda_mostrar{
+		width: 200px;
+		margin-left: 60px;
+	}
+}
+@media (min-width: 500px) {
+	.div_agenda_mostrar{
+		width: 200px;
+		margin-left: 100px;
+	}
+}
+@media (min-width: 600px) {
+	.div_agenda_mostrar{
+		width: 200px;
+		margin-left: 130px;
+	}
+}
+@media (min-width: 700px) {
+	.div_agenda_mostrar{
+		width: 200px;
+		margin-left: 150px;
+	}
+}
+@media (min-width: 800px) {
+	.div_agenda_mostrar{
+		width: 200px;
+		margin-left: 170px;
+	}
+}
 @media (min-width: 992px) {
 	.div_agenda{
-		display: inherit;
+		display: block;
 		margin-top: 35px;
 		margin-left: 740px;
 	}
 }
 @media (min-width: 1200px) {
 	.div_agenda{
-		display: inherit;
+		display: block;
 		margin-top: 45px;
 		margin-left: 940px;
 	}

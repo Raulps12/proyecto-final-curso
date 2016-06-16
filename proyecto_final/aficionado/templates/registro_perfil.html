@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% load i18n %} 	#Esto es para la internacionalización
+{% load i18n %}
 {% load bootstrap3 %}
 
 {% block head_added %}
@@ -107,6 +107,10 @@
 			</form>
 	</div>
 </main>
+
+{% endblock %}
+
+{% block extra_js %}
 
     <script>
     	$("input[name='deportes']" ).on('change', function(){

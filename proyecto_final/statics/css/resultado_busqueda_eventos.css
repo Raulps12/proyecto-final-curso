@@ -41,7 +41,7 @@ a:focus{
 	text-align: left;
 	/*border: 1px solid green;*/
 }
-.img_usuario{
+.img_evento{
 	width: 50px;
 	margin-right: 10px;
 }
@@ -63,7 +63,17 @@ h2{
 	width: 80%;
 	margin-left: 10%;
 }
-
+@media (min-width: 320px) {
+	.fecha_hora{
+		display: block;
+		color: #fc8608;
+		text-align: center;
+	}
+	.deportes{
+		display: block;
+		text-align: center;
+	}
+}
 @media (min-width: 360px) {
 	.fondo{
 		min-height: 585px;
@@ -73,9 +83,21 @@ h2{
 	.fondo{
 		min-height: 645px;
 	 }
+	 .img_evento{
+		width: 70px;
+		margin-right: 10px;
+	}
 }
 @media (min-width: 700px) {
-	.div_deportes{
+	.titulo_evento{
+		font-size: 17px;
+	}
+	.fecha_hora{
+		display: initial;
+		color: #fc8608;
+		text-align: center;
+	}
+	.deportes{
 		display: initial;
 	}
 }

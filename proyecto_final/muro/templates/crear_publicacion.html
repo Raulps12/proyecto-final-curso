@@ -1,32 +1,37 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% load i18n %} 	#Esto es para la internacionalización
+{% load i18n %}
 {% load bootstrap3 %}
+
+{% block head_added %}
+  <link href="{% static "css/crear_publicacion.css" %}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
 
-<main class="container" id="login">
-  <div class="class_registro" id="div_registro">
+<main class="container">
+	<div class="div_crear_publicacion">
+  <div class="crear_publicacion">
 			<form action="." method="post" class="publicacion_form" role="form" enctype="multipart/form-data">
 			{% csrf_token %}
 
-			<label class="titulo">Título</label>
+			<label class="titulo">Título de la publicación</label>
 				<div id="div_id_name" class="form-group">
 	                <div class="controls ">
 	                    <div class="input-group">
-	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-user"></i>
+	                        <div class="input-group-addon"> <i class="fa fa-font"></i>
 	                        </div>
 	       					{{ publicacion_form.titulo }}
 	                    </div>
 	                </div>
             	</div>
 
-            <label class="titulo">Video</label>
+            <label class="titulo">Video (introduce una URL de YouTube)</label>
 				<div id="div_id_name" class="form-group">
 	                <div class="controls ">
 	                    <div class="input-group">
-	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-user"></i>
+	                        <div class="input-group-addon"> <i class="fa fa-youtube-play"></i>
 	                        </div>
 	       					{{ publicacion_form.video }}
 	                    </div>
@@ -34,24 +39,18 @@
             	</div>
 
             <label class="titulo">Imagen</label>
-				<div id="div_id_name" class="form-group">
-	                <div class="controls ">
-	                    <div class="input-group">
-	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-user"></i>
-	                        </div>
-	       					{{ publicacion_form.imagen }}
-	                    </div>
-	                </div>
-            	</div>
-
-            <label class="titulo">Texto de la publicación</label>
+	       		{{ publicacion_form.imagen }}
+	  
+			<br>
+            <label class="titulo">Texto de la publicación</label><br>
             	{{ publicacion_form.texto }}
 
             {% buttons %}
-		        <button class="btn" id="completar" type="submit">Crear Publicación</button>
+		        <button class="btn" id="crear" type="submit">Crear Publicación</button>
 		    {% endbuttons %}
 
 			</form>
+	</div>
 	</div>
 </main>
 

@@ -36,6 +36,7 @@
 .miniatura_usuario{
   width: 34px;
   border: 2px solid white;
+  display: none;
 }
 .div_nombre_usuario{
   float: right;
@@ -104,6 +105,14 @@
 @media (min-width: 320px) {
   .logout {
     width: 32px;
+  }
+}
+@media (min-width: 330px) {
+  .logout {
+    width: 32px;
+  }
+  .miniatura_usuario{
+    display: initial;
   }
 }
 @media (min-width: 400px) {

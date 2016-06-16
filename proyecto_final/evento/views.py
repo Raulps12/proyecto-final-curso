@@ -38,7 +38,7 @@ def editar_evento(request, evento_pk):
             evento_form.save()
             return redirect('muro')
 
-    context = {'evento_form': evento_form, }
+    context = {'evento_form': evento_form, 'evento_item': evento_item, }
     return render(request, 'editar_evento.html', context)
 
 

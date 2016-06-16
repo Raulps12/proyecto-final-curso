@@ -1,0 +1,133 @@
+body {
+  background-image: url("../img/fondo-2.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.container {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+.crear_publicacion {
+  background-color: #fff;
+  border: 10px solid #fc8608;
+  border-radius: 20px;
+  padding: 10px;
+  margin-top: 30px;
+  margin-bottom: 70px;
+  margin-left: 5%;
+  width: 90%;
+  box-shadow: 5px 5px 5px #afafaf, rgba(220,220,220,0.65) 3px 3px 13px 2px inset;
+}
+#crear {
+  width: 100%;
+  background-color: #5fceca;
+  border: 1px solid #37b4af;
+  font-size: 17px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 0px #727171;
+  margin-top: 30px;
+}
+#crear:hover {
+  -webkit-filter: brightness(85%);
+}
+#alert-error {
+  color: #fc8608;
+}
+p {
+  color: #898989;
+}
+a {
+  color: #37b4af;
+  font-weight: bold;
+}
+a:hover {
+  color: #37b4af;
+  -webkit-filter: brightness(85%);
+  text-decoration: none;
+}
+.titulo{
+  color: #fc8608;
+}
+textarea{
+    resize: none;
+}
+#texto{
+    height: 80px;
+}
+#imagen_publicacion{
+  width: 100%;
+  background-color: #5fceca;
+  border: 1px solid #37b4af;
+  border-radius: 5px 5px 5px 5px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 0px #727171;
+  margin-top: 0px;
+  padding: 6px 2px 2px 6px;
+}
+#imagen_publicacion:hover {
+  -webkit-filter: brightness(85%);
+  cursor: pointer;
+}
+#imagen_publicacion:active{
+  outline: none;
+  border: none;
+}
+#imagen_publicacion:focus{
+  outline: none;
+}
+.input-group-addon{
+  height: 10px !important;
+}
+
+@media (min-width: 400px) {
+    .div_crear_publicacion{
+      min-height: 465px;
+    }
+}
+/* Dispositivos pequeños (tablets, anchura mayor o igual a 768px) */
+@media (min-width: 600px) {
+  .crear_publicacion {
+    margin-left: 15%;
+    width: 70%;
+  }
+}
+@media (min-width: 768px) {
+  .crear_publicacion {
+    margin-left: 20%;
+    width: 60%;
+  }
+}
+/* Dispositivos medianos (ordenadores, anchura mayor o igual a 992px) */
+@media (min-width: 992px) {
+  .crear_publicacion {
+    margin-left: 25%;
+    width: 50%;
+  }
+}
+/* Dispositivos grandes (ordenadores, anchura mayor o igual a 1200px) */
+@media (min-width: 1200px) {
+  .crear_publicacion {
+    margin-left: 30%;
+    width: 40%;
+  }
+}
+@media (min-width: 1311px) {
+    .div_crear_publicacion{
+      min-height: 464px;
+    }
+    .crear_publicacion {
+      margin-bottom: 30px;
+    }
+}
+@media (min-width: 1312px) {
+    .div_crear_publicacion{
+      min-height: 464px;
+    }
+    .crear_publicacion {
+      margin-bottom: 70px;
+    }
+}

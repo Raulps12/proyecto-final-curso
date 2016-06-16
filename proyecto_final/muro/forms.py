@@ -10,6 +10,15 @@ class PublicacionForm(forms.ModelForm):
     class Meta:
         model = Publicacion
         fields = ['titulo', 'video', 'imagen', 'texto']
+        widgets = {
+            'titulo': forms.TextInput(
+                attrs={'class': 'textinput form-control input-md', 'autofocus': 'autofocus', 'required': 'true', }),
+            'video': forms.TextInput(
+                attrs={'class': 'textinput form-control input-md', }),
+            'texto': forms.Textarea(
+                attrs={'class': 'textinput form-control input-md', 'id': 'texto'}),
+            'imagen': forms.FileInput(attrs={'class': 'form-control input-md', 'id': 'imagen_publicacion'}),
+        }
 
 
 class ComentarioForm(forms.ModelForm):

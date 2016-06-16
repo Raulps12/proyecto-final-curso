@@ -123,7 +123,7 @@ def editar_publicacion(request, publicacion_pk):
             publicacion_form.save()
             return redirect('muro')
 
-    context = {'publicacion_form': publicacion_form, }
+    context = {'publicacion_form': publicacion_form, 'publicacion_item': publicacion_item, }
     return render(request, 'editar_publicacion.html', context)
 
 

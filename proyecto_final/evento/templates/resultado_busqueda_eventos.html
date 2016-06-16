@@ -4,7 +4,7 @@
 {% load bootstrap3 %}
 
 {% block head_added %}
-<link href="{% static "css/resultado_busqueda.css" %}" rel="stylesheet">
+<link href="{% static "css/resultado_busqueda_eventos.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -17,15 +17,17 @@
 			{% if evento.autor.username != user.username %}
 				<hr class="hr">
 				<div class="div_resultado_busqueda">
-				<img src="{{ evento.imagen.url }}" class="img-circle img_usuario">
+					<img src="{{ evento.imagen.url }}" class="img-rounded img_evento">
 
-				<a href="{% url 'ver_evento' evento.pk %}">{{ evento.titulo }}</a>
+					<a href="{% url 'ver_evento' evento.pk %}" class="titulo_evento">{{ evento.titulo }}</a>
 
-				      {% for deporte in eventos.deportes.all %}
+					<div class="fecha_hora">{{ evento.fecha_hora }}</div>
 
-					      <span class="deportes">{{ deporte }}</span>
+					{% for deporte in evento.deportes.all %}
 
-					  {% endfor %}
+				      <span class="deportes">{{ deporte }}</span>
+
+				  	{% endfor %}
 				</div>
 			{% endif %}
 		{% endfor %}
@@ -33,8 +35,9 @@
 	{% endif %}
 
 	{% if not eventos %}
-		No se han encontrado resultados para tu búsqueda.
-				Comprueba que el término de búsqueda no contiene errores o busca otro término.
+	<div class="mensaje">
+		No se han encontrado resultados para tu búsqueda.<br>
+		Comprueba que el término de búsqueda no contiene errores o busca otro término.</div>
 	{% endif %}
 
 </div>

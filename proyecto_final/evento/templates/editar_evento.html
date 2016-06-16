@@ -5,6 +5,7 @@
 {% load bootstrap3 %}
 
 {% block head_added %}
+	<link href="{% static "css/editar_evento.css" %}" rel="stylesheet">
     {{ evento_form.media }}
 {% endblock %}
 
@@ -15,7 +16,75 @@
 			<form action="." method="post" class="evento_form" role="form" enctype="multipart/form-data">
 			{% csrf_token %}
 			
-			{{ evento_form.as_p }}
+			<label class="titulo">Título</label>
+				<div id="div_id_name" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="fa fa-font"></i>
+	                        </div>
+	       					{{ evento_form.titulo }}
+	                    </div>
+	                </div>
+            	</div>
+			
+			<label class="titulo">Imagen</label>
+			<div class="div_imagen_publicacion">
+				{% if evento_item.imagen.url != '' %}
+					<img src="{{ evento_item.imagen.url }}" alt="..." class="img-thumbnail center-block imagen_publicacion"><br>
+				{% endif %}
+	       		{{ evento_form.imagen }}
+			</div>
+			<br>
+			<label class="titulo">Fecha y Hora</label>
+			{{ evento_form.fecha_hora }}
+			<br>
+			<label class="titulo">Descripción del evento</label>
+			{{ evento_form.descripcion }}
+
+			<br>
+			<label class="titulo">Precio</label>
+				<div id="div_id_name" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="fa fa-money"></i>
+	                        </div>
+	       					{{ evento_form.precio }}
+	                    </div>
+	                </div>
+            	</div>
+
+            <label class="titulo">Nº máximo de participantes</label>
+				<div id="div_id_name" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="fa fa-group"></i>
+	                        </div>
+	       					{{ evento_form.max_participantes }}
+	                    </div>
+	                </div>
+            	</div>
+
+			<label class="titulo">País</label>
+            	<div id="div_id_country" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-flag"></i>
+	                        </div>
+	                        {{ evento_form.pais }}
+	                    </div>
+	                </div>
+            	</div>
+
+				<label class="titulo" id="label_ciudad">Ciudad o localidad</label>
+            	<div id="div_id_city" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="glyphicon glyphicon-flag"></i>
+	                        </div>
+	                        {{ evento_form.ciudad }}
+	                    </div>
+	                </div>
+            	</div><br>
 
 			{% buttons %}
 		        <button class="btn" id="completar" type="submit">Editar Evento</button>

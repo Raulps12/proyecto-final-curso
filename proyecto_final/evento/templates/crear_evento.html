@@ -5,6 +5,7 @@
 {% load bootstrap3 %}
 
 {% block head_added %}
+	<link href="{% static "css/crear_evento.css" %}" rel="stylesheet">
     {{ evento_form.media }}
 {% endblock %}
 
@@ -26,19 +27,50 @@
 					{% endfor %}
 					</div>
 				</div>
+
+			<label class="titulo">Título</label>
+				<div id="div_id_name" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="fa fa-font"></i>
+	                        </div>
+	       					{{ evento_form.titulo }}
+	                    </div>
+	                </div>
+            	</div>
 			
-			<p>Título</p>
-			{{ evento_form.titulo }}
-			<p>Imagen</p>
+			<label class="titulo">Imagen</label>
 			{{ evento_form.imagen }}
-			<p>Fecha y hora</p>
+			<br>
+			<label class="titulo">Fecha y Hora</label>
 			{{ evento_form.fecha_hora }}
-			<p>Descripción</p>
+			<br>
+			<label class="titulo">Descripción del evento</label>
 			{{ evento_form.descripcion }}
-			<p>Precio</p>
-			{{ evento_form.precio }}
-			<p>Nº máximo de participantes</p>
-			{{ evento_form.max_participantes }}
+
+			<br>
+			<label class="titulo">Precio</label>
+				<div id="div_id_name" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="fa fa-money"></i>
+	                        </div>
+	       					{{ evento_form.precio }}
+	                    </div>
+	                </div>
+            	</div>
+
+            <label class="titulo">Nº máximo de participantes</label>
+				<div id="div_id_name" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="fa fa-group"></i>
+	                        </div>
+	       					{{ evento_form.max_participantes }}
+	                    </div>
+	                </div>
+            	</div>
+
 			<label class="titulo">País</label>
             	<div id="div_id_country" class="form-group">
 	                <div class="controls ">
@@ -60,9 +92,18 @@
 	                    </div>
 	                </div>
             	</div><br>
-			<p>Dirección</p>
-			{{ evento_form.direccion }}
-			<p>Localización</p>
+
+            	<label class="titulo">Dirección</label>
+				<div id="div_id_name" class="form-group">
+	                <div class="controls ">
+	                    <div class="input-group">
+	                        <div class="input-group-addon"> <i class="fa fa-map-marker"></i>
+	                        </div>
+	       					{{ evento_form.direccion }}
+	                    </div>
+	                </div>
+            	</div>
+
 			{{ evento_form.localizacion }}
 
 
@@ -73,6 +114,10 @@
 			</form>
 	</div>
 </main>
+
+{% endblock %}
+
+{% block extra_js %}
 
     <script>
     	$("input[name='deportes']" ).on('change', function(){

@@ -3,7 +3,7 @@
 {% load avatar_tags %}
 {% load embed_video_tags %}
 
-{% load i18n %} 	#Esto es para la internacionalización
+{% load i18n %}
 {% load bootstrap3 %}
 {% block head_added %}
 <link href="{% static "css/modal_avatar.css" %}" rel="stylesheet">
@@ -55,7 +55,7 @@
     {% csrf_token %}
     <form action="{% url 'busqueda' %}" method="get" id="content">
       <input type="text" name="s" class="input"  required="True">
-      <button id="buscar" type="reset" class="search"></button>
+      <button id="buscar" type="reset" class="search" title="Buscar"></button>
     </form>
 
     <a href="{% url 'busqueda_avanzada' %}"><button class="btn" id="busqueda_a" type="submit">Búsqueda Avanzada</button></a>
@@ -91,6 +91,74 @@
     </div>
 
   </div>
+
+  <a href="#?" class="mostrar_ocultar_eventos">Eventos &#9660;</a>
+
+  <div class="div_eventos" id="div_eventos">
+
+    <div class="div_agenda_mostrar">
+      <p class="eventos">Eventos</p>
+      <div class="mi_agenda">
+
+        {% for evento in eventos %}
+
+        <div class="mitad_arriba">
+          <span class="span1">{{ evento.fecha_hora|date:"j" }}</span>
+        </div>
+        <div class="mitad_abajo">
+          <span class="span2">{{ evento.fecha_hora|date:"M" }}</span>
+        </div>
+        <div class="datos_evento">
+          <span class="span3">{{ evento.titulo }}</span><br>
+          {{ evento.ciudad }}, {{ evento.pais }}<br>
+
+          {% for deporte in evento.deportes.all %}
+          {{ deporte }}
+          {% endfor %}
+        </div>
+        <div class="ver_evento">
+         <a href="{% url "ver_evento" evento.id %}"><i class="fa fa-chevron-right"></i></a>
+       </div>
+
+       {% if evento.autor == user %}
+       <div class="opciones_evento">
+         <a href="{% url 'editar_evento' evento.id %}" title="Editar"><i class="fa fa-pencil"></i></a>
+         <a  class="borrar_evento" data-toggle="modal" data-target="#modal_borrar_evento" data-id-evento="{{ evento.id }}" title="Borrar" href="#?"><i class="fa fa-close"></i></a>
+       </div>
+
+
+       <hr class="hr_agenda2">
+
+       {% else %}
+       <hr class="hr_agenda3">
+       {% endif %}
+
+       {% endfor %}
+
+       <!--<hr class="hr_agenda1">-->
+
+       <a href="{% url "crear_evento" %} "><button class="btn" id="crear_evento" type="submit">Crear Evento</button></a>
+       <a href="{% url "busqueda_avanzada_eventos" %}" title="Buscar Evento" class="buscar_evento"><i class="fa fa-search "></i></a>
+
+     </div>
+     <!-- Modal Eventos -->
+     <div class="modal fade" id="modal_borrar_evento" tabindex="-2" role="dialog" aria-labelledby="modal_borrar_eventoLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="modal_borrar_eventoLabel">¿Desea borrar este evento?</h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button id="borrarEventoSubmit" type="button" class="btn btn-primary">Borrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 
   
   {% include page_template %}
@@ -209,6 +277,25 @@
       $enlace_mostrar.css('display', 'inline');
       $enlace_ocultar.css('display', 'none');
   }  
+</script>
+
+<!-- Div Eventos -->
+<script language="javascript">
+  // Lo ponemos de esta manera que es el modo live, para que no haya problemas con la carga de Ajax
+  $(document).on('click', '.mostrar_ocultar_eventos', mostrar_ocultar_eventos);
+
+  function mostrar_ocultar_eventos(evento) {
+
+    $mostrar_eventos = $(evento.target);
+    $div_eventos = $(".div_eventos");
+
+    $div_eventos.toggle();
+    if ($div_eventos.css('display') == 'none') {
+      $mostrar_eventos.html('Eventos &#9660;');
+    } else{
+      $mostrar_eventos.html('Eventos &#9650;');
+    }
+  }
 </script>
 
 <!-- Scroll infinito -->
