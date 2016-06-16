@@ -25,6 +25,9 @@
 	position: relative;
 	z-index: 1;
 }
+.contenido_evento{
+	/*border: 1px solid green;*/
+}
 .hr_agenda1{
 	background-color: #fc8608;
 	height: 2px;
@@ -34,9 +37,8 @@
 .hr_agenda2{
 	background-color: #fc8608;
 	height: 1px;
-	margin-top: 0px !important;
-	margin-bottom: 12px !important;
-}
+	margin-top: 10px !important;
+	margin-bottom: 12px !important;}
 .hr_agenda3{
 	background-color: #fc8608;
 	height: 1px;
@@ -69,7 +71,7 @@
 .datos_evento{
 	/*border: 1px solid green;*/
 	color: #37b4af;
-	position: absolute;
+	position: relative;
 	width: 120px;
 	margin-top: -55px;
 	margin-left: 45px;
@@ -84,7 +86,7 @@
 	/*border: 1px solid green;*/
 	position: absolute;
 	width: 20px;
-	margin-top: -35px;
+	margin-top: -52px;
 	margin-left: 165px;
 	font-size: 20px;
 	font-weight: bold;
@@ -128,6 +130,7 @@
 }
 .opciones_evento{
 	margin-left: 150px;
+	margin-bottom: -10px;
 }
 .opciones_evento > a{
 	color: #fc8608;
